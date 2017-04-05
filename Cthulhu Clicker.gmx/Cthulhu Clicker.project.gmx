@@ -12,7 +12,7 @@
   <backgrounds name="background"/>
   <paths name="paths"/>
   <objects name="objects">
-    <objects name="Control objects">
+    <objects name="Control Objects">
       <object>objects\obj_control</object>
     </objects>
     <object>objects\obj_clicker</object>

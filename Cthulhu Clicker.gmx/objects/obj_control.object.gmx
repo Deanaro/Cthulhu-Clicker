@@ -25,22 +25,25 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///resolution
+            <string>///Resolution Management
 
 //change these
 var screen_width = 640;
 var screen_height = 840;
 window_set_position(0, 24);
 
-//DONT CHANGE
-application_surface_draw_enable(false); //disables the defualt surface draw
-surface_resize(application_surface,screen_width,screen_height) //resizes the surface to the resolution
+/*  DONT CHANGE    */
+//DELETE application_surface_draw_enable(false); //disables the defualt surface draw
+surface_resize(application_surface,screen_width,screen_height); //resizes the surface to the resolution
 window_set_size(screen_width,screen_height); //resizes the window to the resolution
 view_wview = screen_width;  //resizes the view to the resolution
 view_hview = screen_height;
-zoom = round((view_wview/sprite_get_width(obj_clicker))/4); //sets the zoom factor so that the button fits rouhply 4 times in the room's width.
-//create instances in porportion to the view
+
+/*  Useful Variables */
+zoom = round((view_wview/sprite_get_width(obj_clicker))/4); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
+//DELETE create instances in porportion to the view
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
+display_right = view_wview; //the y coordinate of window right side
 clickerID = instance_create((view_wview/2) - (sprite_get_width(spr_clicker)/2)*zoom,view_hview*3/4 - (sprite_get_height(spr_clicker)/2)*zoom,obj_clicker);//creates the clicker object, 3/4 down and 1/2 across
 </string>
           </argument>
@@ -62,12 +65,25 @@ clickerID = instance_create((view_wview/2) - (sprite_get_width(spr_clicker)/2)*z
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initial variabls
+            <string>///Initial Variables
 click_damage = 1;
 DPS = 0;
 population = 7000000000;
 afflicted = 0;
 insanity = 0;
+
+//Draw Variables
+bOffset = 10; //border offset for draw position calculations
+tOffset = 4; //text border offset for text y buffer
+
+
+//Calculation Variables - Save memory allocations each step by pre-allocating! - Harry
+ui_population = "";
+ui_afflicted = "";
+ui_insanity = "";
+ui_dps = "";
+ui_entityWidth = 0;
+ui_entityHeight = 0;
 </string>
           </argument>
         </arguments>
@@ -90,8 +106,8 @@ insanity = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///surface draw
-draw_surface_ext(application_surface,0,0,1,1,0,c_white,1); //draws the surface
+            <string>///DELETE surface draw
+//DELETE draw_surface_ext(application_surface,0,0,1,1,0,c_white,1); //draws the surface
 </string>
           </argument>
         </arguments>
@@ -114,11 +130,33 @@ draw_surface_ext(application_surface,0,0,1,1,0,c_white,1); //draws the surface
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_line(0,display_center,view_wview,display_center); //draws the line in the middle of the screen
-draw_text(10,10,"Insanity: " +string(insanity));
-draw_text(10,30,"DPS: " +string(DPS));
-draw_text(10,50,"Population: " +string(population));
-draw_text(10,70,"Afflicted: " +string(afflicted));
+            <string>///Draw the UI
+/* Try to keep the draw elements in order from top to bottom, left to right of the screen :) - Harry */
+
+/* Initialize the UI strings */
+ui_insanity = "Insanity: " + string(insanity);
+ui_population = "Population: " +string(population);
+ui_afflicted = "Afflicted: " +string(afflicted);
+ui_dps = "DPS: " +string(DPS);
+
+/*Draw the UI Elements */
+//Economy First ----------------------
+ui_insanity = "Insanity: " + string(insanity);
+draw_text(bOffset, bOffset,ui_insanity);
+
+ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1); //Get string width of population entity to properly accurately y position
+draw_text(bOffset, bOffset + ui_entityHeight, ui_dps);
+
+ui_entityWidth = string_width(ui_population); //Get string width in order to accurately x position
+draw_text(display_right - bOffset - ui_entityWidth,bOffset, ui_population); //draw the population value
+
+ui_entityWidth = string_width(ui_afflicted); //Get string width in order to accurately x position
+ui_entityHeight = string_height_ext(ui_population, tOffset, -1); //Get string width of population entity to properly accurately y position
+draw_text(display_right - bOffset - ui_entityWidth, bOffset + ui_entityHeight, ui_afflicted); //draw the afflicted value
+
+//Lines Second ----------------------
+draw_line(0,display_center,view_wview,display_center); //draws the line in the middle of the screen
+
 </string>
           </argument>
         </arguments>
