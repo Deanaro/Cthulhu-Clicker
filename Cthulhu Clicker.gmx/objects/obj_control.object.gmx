@@ -33,7 +33,6 @@ var screen_height = 840;
 window_set_position(0, 24);
 
 /*  DONT CHANGE    */
-//DELETE application_surface_draw_enable(false); //disables the defualt surface draw
 surface_resize(application_surface,screen_width,screen_height); //resizes the surface to the resolution
 window_set_size(screen_width,screen_height); //resizes the window to the resolution
 view_wview = screen_width;  //resizes the view to the resolution
@@ -106,9 +105,7 @@ ui_entityHeight = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///DELETE surface draw
-//DELETE draw_surface_ext(application_surface,0,0,1,1,0,c_white,1); //draws the surface
-</string>
+            <string></string>
           </argument>
         </arguments>
       </action>
