@@ -28,7 +28,7 @@
             <string>///Resolution Management
 
 //change these
-var screen_width = 640;
+var screen_width = 620;
 var screen_height = 840;
 window_set_position(0, 24);
 
@@ -130,6 +130,32 @@ ui_entityHeight = 0;
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Draw background
+/* due to how game maker layers sprites the background must be
+drawn first */
+
+// Draw sky -------------------
+draw_sprite_ext( spr_sky, 0, 0, view_hview/2, 300, 300, 0, c_white, 1 );
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Draw the UI
 /* Try to keep the draw elements in order from top to bottom, left to right of the screen :) - Harry */
 
@@ -156,6 +182,9 @@ draw_text(display_right - bOffset - ui_entityWidth, bOffset + ui_entityHeight, u
 
 //Lines Second ----------------------
 draw_line(0,display_center,view_wview,display_center); //draws the line in the middle of the screen
+
+// Cityscape ------------------------
+draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 
 </string>
           </argument>
