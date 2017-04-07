@@ -4,14 +4,20 @@
     <Config>Configs\Default</Config>
   </Configs>
   <NewExtensions/>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sound>sound\snd_hum_placeholder</sound>
+    <sound>sound\snd_tap_on</sound>
+    <sound>sound\snd_tap_off</sound>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_control</sprite>
     <sprite>sprites\spr_clicker</sprite>
     <sprite>sprites\spr_cityscape</sprite>
     <sprite>sprites\spr_sky</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\bgr_placeholder</background>
+  </backgrounds>
   <paths name="paths"/>
   <objects name="objects">
     <objects name="Control Objects">

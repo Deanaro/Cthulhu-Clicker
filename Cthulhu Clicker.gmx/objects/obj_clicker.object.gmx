@@ -28,6 +28,19 @@
             <string>image_speed = 0;
 image_xscale = obj_control.zoom;
 image_yscale = obj_control.zoom;
+
+// set humm variables ------------------
+vol = 0;
+
+// set sound levels --------------------
+audio_sound_gain(snd_hum_placeholder, 0, 0);
+audio_sound_gain(snd_tap_on, 0.01, 0);
+audio_sound_gain(snd_tap_off, 0.01, 0);
+
+// begin running humm sound ------------
+audio_play_sound(snd_hum_placeholder, 5, true);
+
+
 </string>
           </argument>
         </arguments>
@@ -56,6 +69,38 @@ image_yscale = obj_control.zoom;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>// this code runs every step
+
+// adjust vol variable -----------
+if vol &gt; 0 
+{
+vol = vol - 0.005;
+}
+
+// adjust humm loudness ----------
+audio_sound_gain(snd_hum_placeholder, vol, 0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="7">
       <action>
         <libid>1</libid>
@@ -74,7 +119,37 @@ image_yscale = obj_control.zoom;
           <argument>
             <kind>1</kind>
             <string>alarm[0] = 3;
+
+// add to humm loudness -------------
+
+
+vol = vol + 0.1;
+
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>snd_tap_off</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
@@ -102,6 +177,30 @@ obj_control.population -=obj_control.click_damage;
 obj_control.afflicted +=obj_control.click_damage;
 image_index =1;
 </string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>211</id>
+        <kind>0</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>0</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_sound</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>6</kind>
+            <sound>snd_tap_on</sound>
+          </argument>
+          <argument>
+            <kind>3</kind>
+            <string>0</string>
           </argument>
         </arguments>
       </action>
