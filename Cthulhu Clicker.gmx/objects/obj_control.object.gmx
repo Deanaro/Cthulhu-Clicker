@@ -83,6 +83,10 @@ ui_insanity = "";
 ui_dps = "";
 ui_entityWidth = 0;
 ui_entityHeight = 0;
+
+// play bg music ---------------
+audio_play_sound(snd_placeholder_music, 10, true);
+audio_sound_gain(snd_placeholder_music, 0.1, 0);
 </string>
           </argument>
         </arguments>

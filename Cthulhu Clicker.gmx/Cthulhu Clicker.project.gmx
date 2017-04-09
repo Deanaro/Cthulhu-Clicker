@@ -8,6 +8,7 @@
     <sound>sound\snd_hum_placeholder</sound>
     <sound>sound\snd_tap_on</sound>
     <sound>sound\snd_tap_off</sound>
+    <sound>sound\snd_placeholder_music</sound>
   </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_control</sprite>

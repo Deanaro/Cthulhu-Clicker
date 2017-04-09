@@ -91,7 +91,7 @@ audio_play_sound(snd_hum_placeholder, 5, true);
 // adjust vol variable -----------
 if vol &gt; 0 
 {
-vol = vol - 0.005;
+vol = vol - 0.0045;
 }
 
 // adjust humm loudness ----------
@@ -123,7 +123,7 @@ audio_sound_gain(snd_hum_placeholder, vol, 0);
 // add to humm loudness -------------
 
 
-vol = vol + 0.1;
+vol = vol + 0.05;
 
 </string>
           </argument>
