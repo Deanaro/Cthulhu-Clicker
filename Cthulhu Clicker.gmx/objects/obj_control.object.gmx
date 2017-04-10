@@ -71,6 +71,9 @@ population = 7000000000;
 afflicted = 0;
 insanity = 0;
 
+//view
+viewnum = 0;
+
 //Draw Variables
 bOffset = 10; //border offset for draw position calculations
 tOffset = 4; //text border offset for text y buffer
@@ -165,6 +168,56 @@ draw_line(0,display_center,view_wview,display_center); //draws the line in the m
 // Cityscape ------------------------
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="39">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>viewnum ++;
+if viewnum &gt; 2 {viewnum = 2;}
+scr_view();
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="37">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>viewnum --;
+if viewnum &lt; 0 {viewnum = 0;}
+scr_view();
 </string>
           </argument>
         </arguments>

@@ -20,6 +20,9 @@
     <background>background\bgr_placeholder</background>
   </backgrounds>
   <paths name="paths"/>
+  <scripts name="scripts">
+    <script>scripts\scr_view.gml</script>
+  </scripts>
   <objects name="objects">
     <objects name="Control Objects">
       <object>objects\obj_control</object>
