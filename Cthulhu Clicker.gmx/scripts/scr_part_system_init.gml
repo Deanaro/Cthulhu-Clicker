@@ -23,4 +23,3 @@ part_emitter_click = part_emitter_create(part_click);
 part_emitter_region(part_sys_click, part_emitter_click, spawn_pos_x-52, spawn_pos_x+24, spawn_pos_y, spawn_pos_y, ps_shape_line, ps_distr_invgaussian);
 
 
-

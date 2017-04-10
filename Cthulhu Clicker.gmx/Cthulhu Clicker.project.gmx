@@ -14,7 +14,9 @@
     <sprite>sprites\spr_control</sprite>
     <sprite>sprites\spr_clicker</sprite>
     <sprite>sprites\spr_cityscape</sprite>
+    <sprite>sprites\spr_ph_glob</sprite>
     <sprite>sprites\spr_sky</sprite>
+    <sprite>sprites\spr_placeholdericon</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -22,10 +24,14 @@
   <paths name="paths"/>
   <scripts name="scripts">
     <script>scripts\scr_view.gml</script>
+    <script>scripts\scr_part_Clicker.gml</script>
+    <script>scripts\scr_part_system_init.gml</script>
+    <script>scripts\scr_itemadd.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Control Objects">
       <object>objects\obj_control</object>
+      <object>objects\obj_store_control</object>
     </objects>
     <object>objects\obj_clicker</object>
   </objects>

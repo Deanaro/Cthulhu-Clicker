@@ -39,11 +39,13 @@ view_wview = screen_width;  //resizes the view to the resolution
 view_hview = screen_height;
 
 /*  Useful Variables */
-zoom = round((view_wview/sprite_get_width(obj_clicker))/4); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
+global.Test= round(view_wview/128);
+zoom = round(view_wview/(sprite_get_width(spr_clicker) * 4)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
 //DELETE create instances in porportion to the view
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
 display_right = view_wview; //the y coordinate of window right side
 clickerID = instance_create((view_wview/2) - (sprite_get_width(spr_clicker)/2)*zoom,view_hview*3/4 - (sprite_get_height(spr_clicker)/2)*zoom,obj_clicker);//creates the clicker object, 3/4 down and 1/2 across
+
 </string>
           </argument>
         </arguments>
@@ -90,6 +92,27 @@ ui_entityHeight = 0;
 // play bg music ---------------
 audio_play_sound(snd_placeholder_music, 10, true);
 audio_sound_gain(snd_placeholder_music, 0.1, 0);
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>instance_create(view_wview,y,obj_store_control);
 </string>
           </argument>
         </arguments>
@@ -146,24 +169,21 @@ ui_insanity = "Insanity: " + string(insanity);
 ui_population = "Population: " +string(population);
 ui_afflicted = "Afflicted: " +string(afflicted);
 ui_dps = "DPS: " +string(DPS);
-
+viewoffset = view_wview * viewnum;
 /*Draw the UI Elements */
 //Economy First ----------------------
 ui_insanity = "Insanity: " + string(insanity);
-draw_text(bOffset, bOffset,ui_insanity);
+draw_text(bOffset + viewoffset, bOffset,ui_insanity);
 
 ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1); //Get string width of population entity to properly accurately y position
-draw_text(bOffset, bOffset + ui_entityHeight, ui_dps);
+draw_text(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps);
 
 ui_entityWidth = string_width(ui_population); //Get string width in order to accurately x position
-draw_text(display_right - bOffset - ui_entityWidth,bOffset, ui_population); //draw the population value
+draw_text(display_right - bOffset - ui_entityWidth + viewoffset,bOffset, ui_population); //draw the population value
 
 ui_entityWidth = string_width(ui_afflicted); //Get string width in order to accurately x position
 ui_entityHeight = string_height_ext(ui_population, tOffset, -1); //Get string width of population entity to properly accurately y position
-draw_text(display_right - bOffset - ui_entityWidth, bOffset + ui_entityHeight, ui_afflicted); //draw the afflicted value
-
-//Lines Second ----------------------
-draw_line(0,display_center,view_wview,display_center); //draws the line in the middle of the screen
+draw_text(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted); //draw the afflicted value
 
 // Cityscape ------------------------
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
