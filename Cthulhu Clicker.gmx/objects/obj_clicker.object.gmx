@@ -45,6 +45,28 @@ audio_play_sound(snd_hum_placeholder, 5, true);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Initialize Clicker Particle System/s
+scr_part_system_init(x+(sprite_width/2), y+(sprite_height/2)-25);
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -176,6 +198,8 @@ obj_control.insanity +=obj_control.click_damage;
 obj_control.population -=obj_control.click_damage;
 obj_control.afflicted +=obj_control.click_damage;
 image_index =1;
+
+scr_part_Clicker(); //Emit Click Particle Effect
 </string>
           </argument>
         </arguments>
