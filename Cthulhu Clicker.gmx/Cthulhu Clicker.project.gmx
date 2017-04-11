@@ -28,6 +28,8 @@
     <script>scripts\scr_part_system_init.gml</script>
     <script>scripts\scr_item_add.gml</script>
     <script>scripts\scr_item_update.gml</script>
+    <script>scripts\scr_save.gml</script>
+    <script>scripts\scr_load.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Control Objects">
