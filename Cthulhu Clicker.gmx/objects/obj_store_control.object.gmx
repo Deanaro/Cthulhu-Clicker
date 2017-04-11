@@ -2,7 +2,7 @@
 <object>
   <spriteName>spr_control</spriteName>
   <solid>0</solid>
-  <visible>-1</visible>
+  <visible>0</visible>
   <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
@@ -31,6 +31,10 @@
 //item level
 //item start value
 //icon
+image_xscale = view_wview/sprite_get_width(spr_control);
+image_yscale = (view_hview/2)/sprite_get_height(spr_control);
+store_scroll = 0;
+drag = 0;
 store = ds_grid_create(4,4); //index,name,level,startval,icon
 scr_item_add(0,"Cultist",50,spr_placeholdericon); //index, name, startval, icon
 scr_item_add(1,"somebody",100,spr_placeholdericon);
@@ -52,7 +56,7 @@ scr_item_update(); //updates price and DPS
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -69,17 +73,82 @@ scr_item_update(); //updates price and DPS
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw item elements
-for(var i=0; i &lt; ds_grid_height(store); i++)
+            <string>drag = 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if drag = 1
 {
-draw_text(view_wview + 10 + 7*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, string(store[# 1,i]));
-draw_text(view_wview + 10 + 24*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, string(store[# 0,i]));
-draw_text(view_wview + 10 + 41*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, "price:  " + string(item_price[i]));
-if store[# 1, i] != 0
-{
-draw_text(view_wview + 10 + 70*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, "DPS: " + string(item_DPS[i]));
+store_scroll += mouse_y - dragy;
+dragy = mouse_y;
 }
-}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>drag = 0;
+alarm[0] = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>alarm[0] = 4;
+dragy = mouse_y;
 </string>
           </argument>
         </arguments>
