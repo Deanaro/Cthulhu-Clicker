@@ -141,12 +141,6 @@ audio_sound_gain(snd_hum_placeholder, vol, 0);
           <argument>
             <kind>1</kind>
             <string>alarm[0] = 3;
-
-// add to humm loudness -------------
-
-
-vol = vol + 0.05;
-
 </string>
           </argument>
         </arguments>
@@ -200,6 +194,10 @@ obj_control.afflicted +=obj_control.click_damage;
 image_index =1;
 
 scr_part_Clicker(); //Emit Click Particle Effect
+
+// add to humm loudness -------------
+vol = vol + 0.05;
+
 </string>
           </argument>
         </arguments>

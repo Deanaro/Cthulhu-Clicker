@@ -32,10 +32,21 @@
 //item start value
 //icon
 store = ds_grid_create(4,4); //index,name,level,startval,icon
-scr_itemadd(0,"Cultist",50,spr_placeholdericon); //index, name, startval, icon
-scr_itemadd(1,"somebody",100,spr_placeholdericon);
-scr_itemadd(2,"once",1000,spr_placeholdericon);
-scr_itemadd(3,"toldme",5000,spr_placeholdericon);
+scr_item_add(0,"Cultist",50,spr_placeholdericon); //index, name, startval, icon
+scr_item_add(1,"somebody",100,spr_placeholdericon);
+scr_item_add(2,"once",1000,spr_placeholdericon);
+scr_item_add(3,"toldme",5000,spr_placeholdericon);
+for(var i=0; i &lt; ds_grid_height(store); i++)
+{
+with instance_create(view_wview + 10, view_hview/2 +10 + 24*obj_control.zoom*i,obj_icon)
+    {
+    sprite_index = obj_store_control.store[# 3,i];
+    parent = i;
+    image_xscale = obj_control.zoom;
+    image_yscale = obj_control.zoom;
+    }
+}
+scr_item_update(); //updates price and DPS
 </string>
           </argument>
         </arguments>
@@ -61,9 +72,13 @@ scr_itemadd(3,"toldme",5000,spr_placeholdericon);
             <string>///draw item elements
 for(var i=0; i &lt; ds_grid_height(store); i++)
 {
-draw_sprite_ext(store[# 3,i],0,view_wview + 10, view_hview/2 +10 + 24*obj_control.zoom*i,obj_control.zoom,obj_control.zoom,0,c_white,1);
 draw_text(view_wview + 10 + 7*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, string(store[# 1,i]));
 draw_text(view_wview + 10 + 24*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, string(store[# 0,i]));
+draw_text(view_wview + 10 + 41*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, "price:  " + string(item_price[i]));
+if store[# 1, i] != 0
+{
+draw_text(view_wview + 10 + 70*obj_control.zoom, view_hview/2 + 10 + (7+24*i)*obj_control.zoom, "DPS: " + string(item_DPS[i]));
+}
 }
 </string>
           </argument>

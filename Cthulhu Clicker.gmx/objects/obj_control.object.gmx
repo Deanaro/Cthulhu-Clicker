@@ -39,7 +39,6 @@ view_wview = screen_width;  //resizes the view to the resolution
 view_hview = screen_height;
 
 /*  Useful Variables */
-global.Test= round(view_wview/128);
 zoom = round(view_wview/(sprite_get_width(spr_clicker) * 4)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
 //DELETE create instances in porportion to the view
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
@@ -72,7 +71,7 @@ DPS = 0;
 population = 7000000000;
 afflicted = 0;
 insanity = 0;
-
+global.DPS = 0;
 //view
 viewnum = 0;
 
@@ -92,6 +91,9 @@ ui_entityHeight = 0;
 // play bg music ---------------
 audio_play_sound(snd_placeholder_music, 10, true);
 audio_sound_gain(snd_placeholder_music, 0.1, 0);
+
+//DPS cycle
+alarm[0] = 1;
 </string>
           </argument>
         </arguments>
@@ -113,6 +115,42 @@ audio_sound_gain(snd_placeholder_music, 0.1, 0);
           <argument>
             <kind>1</kind>
             <string>instance_create(view_wview,y,obj_store_control);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if DPS &lt;=60 and DPS &gt; 0
+{
+alarm[0] = round(60/DPS);
+obj_control.insanity +=1;
+obj_control.population -=1;
+obj_control.afflicted +=1;
+}
+else
+{
+alarm[0] = 1;
+obj_control.insanity +=ceil(DPS/60);
+obj_control.population -=ceil(DPS/60);
+obj_control.afflicted +=ceil(DPS/60);
+}
 </string>
           </argument>
         </arguments>
@@ -212,7 +250,7 @@ draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
             <kind>1</kind>
             <string>viewnum ++;
 if viewnum &gt; 2 {viewnum = 2;}
-scr_view();
+scr_viewupdate();
 </string>
           </argument>
         </arguments>
@@ -237,7 +275,7 @@ scr_view();
             <kind>1</kind>
             <string>viewnum --;
 if viewnum &lt; 0 {viewnum = 0;}
-scr_view();
+scr_viewupdate();
 </string>
           </argument>
         </arguments>

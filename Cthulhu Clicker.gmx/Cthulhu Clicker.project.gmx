@@ -23,10 +23,11 @@
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
-    <script>scripts\scr_view.gml</script>
+    <script>scripts\scr_viewupdate.gml</script>
     <script>scripts\scr_part_Clicker.gml</script>
     <script>scripts\scr_part_system_init.gml</script>
-    <script>scripts\scr_itemadd.gml</script>
+    <script>scripts\scr_item_add.gml</script>
+    <script>scripts\scr_item_update.gml</script>
   </scripts>
   <objects name="objects">
     <objects name="Control Objects">
@@ -34,6 +35,7 @@
       <object>objects\obj_store_control</object>
     </objects>
     <object>objects\obj_clicker</object>
+    <object>objects\obj_icon</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>
