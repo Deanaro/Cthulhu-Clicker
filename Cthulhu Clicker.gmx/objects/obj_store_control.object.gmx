@@ -35,6 +35,7 @@ image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);
 store_scroll = 0;
 drag = 0;
+dragoverwrite = 0;
 store = ds_grid_create(4,4); //index,name,level,startval,icon
 scr_item_add(0,"Cultist",50,spr_placeholdericon); //index, name, startval, icon
 scr_item_add(1,"somebody",100,spr_placeholdericon);
@@ -73,7 +74,7 @@ scr_item_update(); //updates price and DPS
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>drag = 1;
+            <string>dragoverwrite = 1;
 </string>
           </argument>
         </arguments>
@@ -124,6 +125,7 @@ dragy = mouse_y;
           <argument>
             <kind>1</kind>
             <string>drag = 0;
+dragoverwrite = 0;
 alarm[0] = 0;
 </string>
           </argument>
@@ -147,7 +149,8 @@ alarm[0] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 4;
+            <string>alarm[0] = 10;
+drag = 1;
 dragy = mouse_y;
 </string>
           </argument>
