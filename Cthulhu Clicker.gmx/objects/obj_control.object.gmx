@@ -74,6 +74,7 @@ insanity = 0;
 global.DPS = 0;
 //view
 viewnum = 0;
+scr_viewupdate();
 
 //Draw Variables
 bOffset = 10; //border offset for draw position calculations
@@ -94,6 +95,14 @@ audio_sound_gain(snd_placeholder_music, 0.1, 0);
 
 //DPS cycle
 alarm[0] = 1;
+
+//font test
+fnt_test = font_add_sprite_ext(spr_fonttest,"0123456789",false,0);
+draw_set_font(fnt_test);
+draw_set_color(c_white);
+global.font_size = floor(zoom/4)
+//create store control object
+instance_create(view_wview,y+view_hview/2,obj_store_control);
 </string>
           </argument>
         </arguments>
@@ -135,29 +144,6 @@ alarm[0] = 1;
           <argument>
             <kind>0</kind>
             <string></string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///create store control object
-
-instance_create(view_wview,y+view_hview/2,obj_store_control);
-</string>
           </argument>
         </arguments>
       </action>
@@ -343,17 +329,17 @@ viewoffset = view_wview * viewnum;
 /*Draw the UI Elements */
 //Economy First ----------------------
 ui_insanity = "Insanity: " + string(insanity);
-draw_text(bOffset + viewoffset, bOffset,ui_insanity);
+draw_text_transformed(bOffset + viewoffset, bOffset,ui_insanity,global.font_size,global.font_size,0);
 
-ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1); //Get string width of population entity to properly accurately y position
-draw_text(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps);
+ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1)*global.font_size + zoom; //Get string width of population entity to properly accurately y position
+draw_text_transformed(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps,global.font_size,global.font_size,0);
 
-ui_entityWidth = string_width(ui_population); //Get string width in order to accurately x position
-draw_text(display_right - bOffset - ui_entityWidth + viewoffset,bOffset, ui_population); //draw the population value
+ui_entityWidth = string_width(ui_population) *global.font_size; //Get string width in order to accurately x position
+draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset,bOffset, ui_population,global.font_size,global.font_size,0); //draw the population value
 
-ui_entityWidth = string_width(ui_afflicted); //Get string width in order to accurately x position
-ui_entityHeight = string_height_ext(ui_population, tOffset, -1); //Get string width of population entity to properly accurately y position
-draw_text(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted); //draw the afflicted value
+ui_entityWidth = string_width(ui_afflicted) *global.font_size; //Get string width in order to accurately x position
+ui_entityHeight = string_height_ext(ui_population, tOffset, -1) *global.font_size + zoom; //Get string width of population entity to properly accurately y position
+draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted,global.font_size,global.font_size,0); //draw the afflicted value
 
 // Cityscape ------------------------
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );

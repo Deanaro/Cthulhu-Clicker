@@ -36,11 +36,7 @@ image_yscale = (view_hview/2)/sprite_get_height(spr_control);
 store_scroll = 0;
 drag = 0;
 dragoverwrite = 0;
-store = ds_grid_create(4,4); //index,name,level,startval,icon
-scr_item_add(0,"Cultist",50,spr_placeholdericon); //index, name, startval, icon
-scr_item_add(1,"somebody",100,spr_placeholdericon);
-scr_item_add(2,"once",1000,spr_placeholdericon);
-scr_item_add(3,"toldme",5000,spr_placeholdericon);
+scr_item_list();
 for(var i=0; i &lt; ds_grid_height(store); i++)
 {
 with instance_create(view_wview + 10, view_hview/2 +10 + 24*obj_control.zoom*i,obj_icon)
@@ -101,6 +97,7 @@ scr_item_update(); //updates price and DPS
 {
 store_scroll += mouse_y - dragy;
 dragy = mouse_y;
+if store_scroll &gt; 0 {store_scroll = 0;}
 }
 </string>
           </argument>
