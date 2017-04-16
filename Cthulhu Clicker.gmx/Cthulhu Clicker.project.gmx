@@ -11,7 +11,6 @@
     <sound>sound\snd_placeholder_music</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_dot</sprite>
     <sprite>sprites\spr_control</sprite>
     <sprite>sprites\spr_clicker</sprite>
     <sprite>sprites\spr_cityscape</sprite>
@@ -26,7 +25,14 @@
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
     </sprites>
-    <sprite>sprites\spr_arrow</sprite>
+    <sprites name="UI">
+      <sprite>sprites\spr_arrow</sprite>
+      <sprite>sprites\spr_dot</sprite>
+    </sprites>
+    <sprites name="Unused">
+      <sprite>sprites\spr_flame_coin</sprite>
+      <sprite>sprites\spr_coin_green</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>

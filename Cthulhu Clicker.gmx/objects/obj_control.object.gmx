@@ -72,6 +72,7 @@ population = 7000000000;
 afflicted = 0;
 insanity = 0;
 global.DPS = 0;
+image_speed = 7;
 //View Variables
 viewnum = 0;
 index_minView = -1; //The lowest numbered View
@@ -416,8 +417,9 @@ viewoffset = view_wview * viewnum;
 /*Draw the HUD Elements */
 /*Economy ------------------------ 
 Draw the economy HUD at the top of the screen*/
-ui_insanity = "Insanity: " + string(insanity);
+ui_entityWidth = string_width(ui_insanity) *global.font_size;
 draw_text_transformed(bOffset + viewoffset, bOffset,ui_insanity,global.font_size,global.font_size,0);
+draw_sprite(spr_flame_coin, image_index, ui_entityWidth + bOffset + viewoffset, bOffset+ ui_entityHeight/2);
 
 ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1)*global.font_size + zoom; //Get string width of population entity to properly accurately y position
 draw_text_transformed(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps,global.font_size,global.font_size,0);
