@@ -36,7 +36,15 @@ image_yscale = (view_hview/2)/sprite_get_height(spr_control);
 store_scroll = 0;
 drag = 0;
 dragoverwrite = 0;
-scr_item_list();
+//check is save exists if so load it
+if (!file_exists("save.ini")) 
+{
+    scr_item_list();
+}
+else
+{
+    scr_load();
+}
 for(var i=0; i &lt; ds_grid_height(store); i++)
 {
 with instance_create(view_wview + 10, view_hview/2 +10 + 24*obj_control.zoom*i,obj_icon)
