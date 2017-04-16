@@ -74,8 +74,13 @@ insanity = 0;
 global.DPS = 0;
 //View Variables
 viewnum = 0;
+index_minView = -1; //The lowest numbered View
+index_maxView = 2; //The highest numbered View
+
+/* View index numbers */
 shop_view = 1;
 menu_view = -1;
+
 scr_viewupdate();
 
 //Draw Variables
@@ -83,7 +88,7 @@ bOffset = 10; //border offset for draw position calculations
 tOffset = 4; //text border offset for text y buffer
 view_wmiddle = view_wview/2; //width middle
 view_hmiddle = view_hview/2; //height middle
-
+view_ui_middle = view_hmiddle + view_hmiddle/2; //verticle middle of UI area
 
 //Calculation Variables - Save memory allocations each step by pre-allocating! - Harry
 ui_population = "";
@@ -92,6 +97,20 @@ ui_insanity = "";
 ui_dps = "";
 ui_entityWidth = 0;
 ui_entityHeight = 0;
+
+//HUD draw precalcs
+view_count = abs(index_minView) + abs(index_maxView) + 1; //add together negative, zero and positive indexed views
+dot_plus_offset_width = sprite_get_width(spr_dot) + bOffset;
+all_dots_width = (view_count*dot_plus_offset_width-bOffset);
+dots_pos_start = (view_wview-all_dots_width)/2;
+//Arrows
+ui_arrow_width = sprite_get_width(spr_arrow);
+ui_arrow_height = sprite_get_height(spr_arrow);
+ui_arrow_right_xpos = view_wview - ui_arrow_width - bOffset;
+ui_arrow_left_xpos = bOffset;
+ui_arrow_ypos = view_hmiddle + (ui_arrow_height/2);
+ui_arrow_top = ui_arrow_ypos-(ui_arrow_height/2);
+ui_arrow_bottom = ui_arrow_ypos+(ui_arrow_height/2);
 
 // play bg music ---------------
 audio_play_sound(snd_placeholder_music, 10, true);
@@ -301,6 +320,45 @@ obj_control.afflicted +=ceil(DPS/60);
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="56">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check UI Arrows
+if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through store
+{
+    //Check inside verticle bounds
+    if (mouse_y &gt; (ui_arrow_top) &amp;&amp; mouse_y &lt; (ui_arrow_bottom)) {
+        //Check leftmost arrow
+        if (mouse_x &gt; (view_xview + ui_arrow_left_xpos) &amp;&amp; mouse_x &lt; (view_xview + ui_arrow_left_xpos + ui_arrow_width))
+        {
+            scr_view_instant_left();
+        }
+        //Check Rightmost arrow
+        else if (mouse_x &gt; (view_xview + ui_arrow_right_xpos) &amp;&amp; mouse_x &lt; (view_xview + ui_arrow_right_xpos + ui_arrow_width))
+        {
+            scr_view_instant_right();
+        }   
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -344,18 +402,20 @@ draw_sprite_ext( spr_sky, 0, 0, view_hview/2, 300, 300, 0, c_white, 1 );
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw the UI
+            <string>///Draw the HUD
 /* Try to keep the draw elements in order from top to bottom, left to right of the screen :) - Harry */
 
-/* Initialize the UI strings */
+/* Calculate the HUD strings 
+!!! Should be moved to step event instead of Draw*/
 ui_insanity = "Insanity: " + string(insanity);
 ui_population = "Population: " +string(population);
 ui_afflicted = "Afflicted: " +string(afflicted);
 ui_dps = "DPS: " +string(DPS);
 viewoffset = view_wview * viewnum;
 
-/*Draw the UI Elements */
-//Economy First ----------------------
+/*Draw the HUD Elements */
+/*Economy ------------------------ 
+Draw the economy HUD at the top of the screen*/
 ui_insanity = "Insanity: " + string(insanity);
 draw_text_transformed(bOffset + viewoffset, bOffset,ui_insanity,global.font_size,global.font_size,0);
 
@@ -369,9 +429,31 @@ ui_entityWidth = string_width(ui_afflicted) *global.font_size; //Get string widt
 ui_entityHeight = string_height_ext(ui_population, tOffset, -1) *global.font_size + zoom; //Get string width of population entity to properly accurately y position
 draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted,global.font_size,global.font_size,0); //draw the afflicted value
 
-// Cityscape ------------------------
+/* Cityscape ------------------------
+Draw the cityscape 
+!!! This needs to be moved to it's own script imo, the monsters/city is a big element and will need its own controller - Harry*/
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 
+/* View Move Arrows ------------------------ 
+Draw the view move arrows */
+if (viewnum != index_minView) {
+    draw_sprite(spr_arrow, 0, view_xview + ui_arrow_left_xpos, ui_arrow_ypos);
+}
+if (viewnum != index_maxView) {
+    draw_sprite(spr_arrow, 1, view_xview + ui_arrow_right_xpos, ui_arrow_ypos);
+}
+
+/* View Dot Indicator ------------------------ 
+Draw indicators of the views at the bottom of the screen */
+draw_set_alpha(0.6);
+for (i = 0; i &lt; view_count; i++) {
+    if (i-abs(index_minView) = viewnum) {
+        draw_sprite(spr_dot, 0, dots_pos_start + (i*dot_plus_offset_width) + view_xview, view_hview-38);
+    } else {
+        draw_sprite(spr_dot, 1, dots_pos_start + (i*dot_plus_offset_width) + view_xview, view_hview-38);
+    }
+}
+draw_set_alpha(1); //return opactiy to default
 </string>
           </argument>
         </arguments>
@@ -380,24 +462,41 @@ draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
     <event eventtype="9" enumb="39">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>viewnum ++;
-if viewnum &gt; 2 {viewnum = 2;}
-scr_viewupdate();
-</string>
+            <kind>9</kind>
+            <script>scr_view_instant_right</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>
@@ -405,24 +504,41 @@ scr_viewupdate();
     <event eventtype="9" enumb="37">
       <action>
         <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
+        <id>601</id>
+        <kind>0</kind>
         <userelative>0</userelative>
         <isquestion>0</isquestion>
         <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
+        <exetype>1</exetype>
+        <functionname>action_execute_script</functionname>
         <codestring></codestring>
         <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
-            <kind>1</kind>
-            <string>viewnum --;
-if viewnum &lt; -1 {viewnum = -1;}
-scr_viewupdate();
-</string>
+            <kind>9</kind>
+            <script>scr_view_instant_left</script>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
+          </argument>
+          <argument>
+            <kind>0</kind>
+            <string></string>
           </argument>
         </arguments>
       </action>

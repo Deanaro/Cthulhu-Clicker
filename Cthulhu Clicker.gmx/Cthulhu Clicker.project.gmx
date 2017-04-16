@@ -11,6 +11,7 @@
     <sound>sound\snd_placeholder_music</sound>
   </sounds>
   <sprites name="sprites">
+    <sprite>sprites\spr_dot</sprite>
     <sprite>sprites\spr_control</sprite>
     <sprite>sprites\spr_clicker</sprite>
     <sprite>sprites\spr_cityscape</sprite>
@@ -25,6 +26,7 @@
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
     </sprites>
+    <sprite>sprites\spr_arrow</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -39,6 +41,8 @@
     <scripts name="View">
       <script>scripts\scr_viewupdate.gml</script>
       <script>scripts\scr_obj_scale.gml</script>
+      <script>scripts\scr_view_instant_left.gml</script>
+      <script>scripts\scr_view_instant_right.gml</script>
     </scripts>
     <scripts name="save/load/clear">
       <script>scripts\scr_save_clear.gml</script>
