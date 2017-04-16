@@ -65,20 +65,24 @@ clickerID = instance_create((view_wview/2) - (sprite_get_width(spr_clicker)/2)*z
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Initial Variables
+            <string>///INIT Game Variables
 click_damage = 1;
 DPS = 0;
 population = 7000000000;
 afflicted = 0;
 insanity = 0;
 global.DPS = 0;
-//view
+//View Variables
 viewnum = 0;
+shop_view = 1;
+menu_view = -1;
 scr_viewupdate();
 
 //Draw Variables
 bOffset = 10; //border offset for draw position calculations
 tOffset = 4; //text border offset for text y buffer
+view_wmiddle = view_wview/2; //width middle
+view_hmiddle = view_hview/2; //height middle
 
 
 //Calculation Variables - Save memory allocations each step by pre-allocating! - Harry
@@ -101,8 +105,31 @@ fnt_test = font_add_sprite_ext(spr_fonttest,"0123456789",false,0);
 draw_set_font(fnt_test);
 draw_set_color(c_white);
 global.font_size = floor(zoom/4)
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///INIT Control Objects
+
 //create store control object
 instance_create(view_wview,y+view_hview/2,obj_store_control);
+instance_create(0,0,obj_menu_control);
 </string>
           </argument>
         </arguments>
@@ -326,6 +353,7 @@ ui_population = "Population: " +string(population);
 ui_afflicted = "Afflicted: " +string(afflicted);
 ui_dps = "DPS: " +string(DPS);
 viewoffset = view_wview * viewnum;
+
 /*Draw the UI Elements */
 //Economy First ----------------------
 ui_insanity = "Insanity: " + string(insanity);
@@ -392,7 +420,7 @@ scr_viewupdate();
           <argument>
             <kind>1</kind>
             <string>viewnum --;
-if viewnum &lt; 0 {viewnum = 0;}
+if viewnum &lt; -1 {viewnum = -1;}
 scr_viewupdate();
 </string>
           </argument>

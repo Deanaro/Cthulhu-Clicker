@@ -14,13 +14,16 @@
     <sprite>sprites\spr_control</sprite>
     <sprite>sprites\spr_clicker</sprite>
     <sprite>sprites\spr_cityscape</sprite>
-    <sprite>sprites\spr_ph_glob</sprite>
     <sprite>sprites\spr_sky</sprite>
     <sprites name="font">
       <sprite>sprites\spr_fonttest</sprite>
     </sprites>
     <sprites name="Item Icons">
       <sprite>sprites\spr_placeholdericon</sprite>
+    </sprites>
+    <sprites name="Placeholders">
+      <sprite>sprites\spr_ph_newgame</sprite>
+      <sprite>sprites\spr_ph_glob</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -35,6 +38,7 @@
     </scripts>
     <scripts name="View">
       <script>scripts\scr_viewupdate.gml</script>
+      <script>scripts\scr_obj_scale.gml</script>
     </scripts>
     <scripts name="save/load/clear">
       <script>scripts\scr_save_clear.gml</script>
@@ -55,9 +59,13 @@
     <objects name="Control Objects">
       <object>objects\obj_control</object>
       <object>objects\obj_store_control</object>
+      <object>objects\obj_menu_control</object>
     </objects>
-    <objects name="Items">
+    <objects name="Store Objects">
       <object>objects\obj_icon</object>
+    </objects>
+    <objects name="Menu Objects">
+      <object>objects\obj_menu_reset</object>
     </objects>
     <object>objects\obj_clicker</object>
   </objects>

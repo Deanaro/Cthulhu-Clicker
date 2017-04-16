@@ -10,7 +10,7 @@ if (file_exists(working_directory + "save.ini"))
 
    ini_open(working_directory + "save.ini");
 
-   //load in spawn location to loval variables
+   //load in game variables to local variables
    obj_control.click_damage = ini_read_real('Variables', 'Click damage' , 0);
    obj_control.DPS = ini_read_real('Variables', 'DPS' , 0);
    obj_control.population = ini_read_real('Variables', 'Population' , 0);

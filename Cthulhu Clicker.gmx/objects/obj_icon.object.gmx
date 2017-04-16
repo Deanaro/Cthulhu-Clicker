@@ -73,7 +73,7 @@ view_num = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if obj_store_control.dragoverwrite = 0
+            <string>if obj_store_control.dragoverwrite = 0 //if not currently scrolling through store
 {
 if obj_store_control.item_price[parent] &lt;= obj_control.insanity
 {
