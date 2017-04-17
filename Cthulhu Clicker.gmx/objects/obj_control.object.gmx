@@ -27,9 +27,17 @@
             <kind>1</kind>
             <string>///Resolution Management
 
-//change these
-var screen_width = 620;
-var screen_height = 840;
+//get os and get screen resolution
+switch (os_type)
+    {
+    case os_windows: var screen_height = 840; var screen_width = 620; break;
+    case os_android: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
+    case os_linux: var screen_height = 840; var screen_width = 620; break;
+    case os_macosx: var screen_height = 840; var screen_width = 620; break;
+    case os_ios: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
+    case os_winphone: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
+    case os_unknown: var screen_height = 840; var screen_width = 620; break;
+    }
 window_set_position(0, 24);
 
 /*  DONT CHANGE    */
