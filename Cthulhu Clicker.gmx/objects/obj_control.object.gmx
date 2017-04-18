@@ -178,7 +178,7 @@ instance_create(0,0,obj_menu_control);
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>300</string>
+            <string>1</string>
           </argument>
           <argument>
             <kind>4</kind>

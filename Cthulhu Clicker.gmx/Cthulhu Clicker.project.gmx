@@ -33,6 +33,7 @@
       <sprite>sprites\spr_flame_coin</sprite>
       <sprite>sprites\spr_coin_green</sprite>
     </sprites>
+    <sprite>sprites\spr_exit</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -72,12 +73,13 @@
       <object>objects\obj_menu_control</object>
     </objects>
     <objects name="Store Objects">
-      <object>objects\obj_icon</object>
+      <object>objects\obj_item</object>
     </objects>
     <objects name="Menu Objects">
       <object>objects\obj_menu_reset</object>
     </objects>
     <object>objects\obj_clicker</object>
+    <object>objects\obj_popup</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_main</room>

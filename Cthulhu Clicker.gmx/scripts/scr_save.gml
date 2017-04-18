@@ -24,19 +24,13 @@ ini_write_real('store dimentions', 'store width' , ds_grid_width(obj_store_contr
 
 //set saving variables
 Ymax = round(ds_grid_height(obj_store_control.store));
-i = 0;
 //loop through grid height
-while (i <= Ymax)
+for(var i = 0; i<Ymax; i++)
 {
     
     //save each width positon
-        ini_write_string('0', 'name' + string(i) , string(ds_grid_get(obj_store_control.store, 0, i)));//name
-        ini_write_real('1', 'level' + string(i), real(ds_grid_get(obj_store_control.store, 1, i)));//level
-        ini_write_real('2', 'stat' + string(i), real(ds_grid_get(obj_store_control.store, 2, i)));//stat
-        ini_write_string('3', 'icon' + string(i), string(ds_grid_get(obj_store_control.store, 3, i)));//icon
+        ini_write_real('1', 'level' + string(i), obj_store_control.store[# 2, i]);//level
         
-
-    i = i + 1;   
 }
 
 //save the current time from local time

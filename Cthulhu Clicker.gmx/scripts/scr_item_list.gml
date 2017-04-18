@@ -1,39 +1,11 @@
-store = ds_grid_create(4,38); //index,name,level,startval,icon
-scr_item_add(0,"Cultist",50,spr_placeholdericon,0); //index, name, startval, icon, level;
-scr_item_add(1,"somebody",100,spr_placeholdericon,0);
-scr_item_add(2,"once",1000,spr_placeholdericon,0);
-scr_item_add(3,"toldme",5000,spr_placeholdericon,0);
-scr_item_add(4,"the",25000,spr_placeholdericon,0);
-scr_item_add(5,"world",106000,spr_placeholdericon,0);
-scr_item_add(6,"is",670000,spr_placeholdericon,0);
-scr_item_add(7,"gonna",1240000,spr_placeholdericon,0);
-scr_item_add(8,"roll",5540000,spr_placeholdericon,0);
-scr_item_add(9,"me",23600000,spr_placeholdericon,0);
-scr_item_add(10,"I",23600000,spr_placeholdericon,0);
-scr_item_add(11,"aint",23600000,spr_placeholdericon,0);
-scr_item_add(12,"the",23600000,spr_placeholdericon,0);
-scr_item_add(13,"sharpest",23600000,spr_placeholdericon,0);
-scr_item_add(14,"tool",23600000,spr_placeholdericon,0);
-scr_item_add(15,"in",23600000,spr_placeholdericon,0);
-scr_item_add(16,"the",23600000,spr_placeholdericon,0);
-scr_item_add(17,"shed",23600000,spr_placeholdericon,0);
-scr_item_add(18,"she",23600000,spr_placeholdericon,0);
-scr_item_add(19,"was",23600000,spr_placeholdericon,0);
-scr_item_add(20,"looking",23600000,spr_placeholdericon,0);
-scr_item_add(21,"kinda",23600000,spr_placeholdericon,0);
-scr_item_add(22,"dumb",23600000,spr_placeholdericon,0);
-scr_item_add(23,"with",23600000,spr_placeholdericon,0);
-scr_item_add(24,"her",23600000,spr_placeholdericon,0);
-scr_item_add(25,"finger",23600000,spr_placeholdericon,0);
-scr_item_add(26,"in",23600000,spr_placeholdericon,0);
-scr_item_add(27,"her",23600000,spr_placeholdericon,0);
-scr_item_add(28,"thumb",23600000,spr_placeholdericon,0);
-scr_item_add(29,"and",23600000,spr_placeholdericon,0);
-scr_item_add(30,"a",23600000,spr_placeholdericon,0);
-scr_item_add(31,"shape",23600000,spr_placeholdericon,0);
-scr_item_add(32,"of",23600000,spr_placeholdericon,0);
-scr_item_add(33,"an",23600000,spr_placeholdericon,0);
-scr_item_add(34,"'L'",23600000,spr_placeholdericon,0);
-scr_item_add(35,"on",23600000,spr_placeholdericon,0);
-scr_item_add(36,"her",23600000,spr_placeholdericon,0);
-scr_item_add(37,"forehead",23600000,spr_placeholdericon,0);
+store = ds_grid_create(8,0); //index,name,level,startval,icon
+
+
+//set max level to -1 if there is no max level.
+//item type is indexed. item types will be defined later
+// name 0, icon 1, level 2, base stat 3, multyplayer 4, item type 5, max level 6, locked 7
+scr_item_add("Cultist",spr_placeholdericon,0,10, 2, 0, -1,0); // name, icon, level, base stat, multyplayer, item type, max level, locked;
+scr_item_add("somebody",spr_placeholdericon,0,74, 4, 0, -1,0); 
+scr_item_add("once",spr_placeholdericon,0,215, 5, 0, -1,0); 
+scr_item_add("told",spr_placeholdericon,0,946, 6, 0, -1,0); 
+scr_item_add("me",spr_placeholdericon,0,16054, 7, 0, -1,0); 

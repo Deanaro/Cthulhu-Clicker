@@ -17,24 +17,19 @@ if (file_exists(working_directory + "save.ini"))
    var afflicted = ini_read_real('Variables', 'Afflicted' , 0);
    var insanity = ini_read_real('Variables', 'Insanity' , 0);
    
-   //load store ds_grid array----------------------------------------------------------
-   Ymax = round(ini_read_real('store dimentions', 'store height' , 38));
+  /*//load store ds_grid array----------------------------------------------------------   //not needed.
+   Ymax = round(ini_read_real('store dimentions', 'store height' , 38));                                    
    Xmax = round(ini_read_real('store dimentions', 'store width' , 4));
    i = 0;
    
    //make array
-   obj_store_control.store = ds_grid_create(Xmax,Ymax); //index,name,level,startval,icon
+   obj_store_control.store = ds_grid_create(Xmax,Ymax); //index,name,level,startval,icon */
    
    //fill array
-   while (i <= Ymax)
+   
+   for(var i =0; i < ds_grid_height(obj_store_control.store); i++)
    {
-        obj_store_control.store = ds_grid_add(store,0,i, ini_read_string('0', 'name' + string(i) , 'error')); // name
-        obj_store_control.store = ds_grid_add(store,1,i,ini_read_real('1', 'level' + string(i) , 0)); // level
-        obj_store_control.store = ds_grid_add(store,2,i,ini_read_real('2', 'stat' + string(i) , 0)); // stat
-        obj_store_control.store = ds_grid_add(store,3,i,ini_read_real('3', 'icon' + string(i) , 'error')); // icon
-   
-   i = i + 1;
-   
+        obj_store_control.store[# 2, i] = ini_read_real('1', 'level' + string(i) , 0);
    }
    
    //add dps over time based on save file values---------------------------------------------------
@@ -47,6 +42,10 @@ if (file_exists(working_directory + "save.ini"))
   
    //calculate damage done and round to nearest interger
    damage = round(diff * DPS);
+   with instance_create(0,0,obj_popup)
+   {
+   afkinsanity = other.damage;
+   }
    
    // update varables with damage done
    population = population - damage;

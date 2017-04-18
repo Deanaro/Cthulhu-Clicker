@@ -73,12 +73,12 @@ view_num = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if obj_store_control.dragoverwrite = 0 //if not currently scrolling through store
+            <string>if obj_store_control.dragoverwrite = 0 and mouse_y &gt; obj_control.display_center //if not currently scrolling through store
 {
 if obj_store_control.item_price[parent] &lt;= obj_control.insanity
 {
 obj_control.insanity -= obj_store_control.item_price[parent];
-obj_store_control.store[# 1, parent] ++;
+obj_store_control.store[# 2, parent] ++;
 scr_item_update();
 }
 else {/*insuficient funds tone*/}
@@ -109,7 +109,7 @@ else {/*insuficient funds tone*/}
 draw_set_font(fnt_defualt); draw_set_color(c_black);
 /*name  */draw_text_transformed(/*x*/view_wview * view_num + boffset + 1 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, string(obj_store_control.store[# 0,parent]), global.font_size,global.font_size,0);
 draw_set_font(obj_control.fnt_test); draw_set_color(c_white);
-/*level */draw_text_transformed(/*x*/view_wview * view_num + boffset + 0 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, string(obj_store_control.store[# 1,parent]), global.font_size,global.font_size,0);
+/*level */draw_text_transformed(/*x*/view_wview * view_num + boffset + 0 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, string(obj_store_control.store[# 2,parent]), global.font_size,global.font_size,0);
 /*price */draw_text_transformed(/*x*/view_wview * view_num + boffset + 2 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, "price:  " + string(obj_store_control.item_price[parent]), global.font_size,global.font_size,0);
 if obj_store_control.store[# 1, parent] != 0
 {
