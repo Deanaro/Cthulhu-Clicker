@@ -39,6 +39,10 @@ while (i <= Ymax)
     i = i + 1;   
 }
 
+//save the current time from local time
+date_set_timezone(timezone_utc);
+ini_write_real('time', 'local', date_current_datetime());
+
 
 
 //close ini completing save

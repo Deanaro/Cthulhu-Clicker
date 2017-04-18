@@ -10,14 +10,14 @@ if (file_exists(working_directory + "save.ini"))
 
    ini_open(working_directory + "save.ini");
 
-   //load in game variables to local variables
+   //load basic variables to local variables-------------------------------------------
    obj_control.click_damage = ini_read_real('Variables', 'Click damage' , 0);
-   obj_control.DPS = ini_read_real('Variables', 'DPS' , 0);
-   obj_control.population = ini_read_real('Variables', 'Population' , 0);
-   obj_control.afflicted = ini_read_real('Variables', 'Afflicted' , 0);
-   obj_control.insanity = ini_read_real('Variables', 'Insanity' , 0);
+   var DPS = ini_read_real('Variables', 'DPS' , 0);
+   var population = ini_read_real('Variables', 'Population' , 0);
+   var afflicted = ini_read_real('Variables', 'Afflicted' , 0);
+   var insanity = ini_read_real('Variables', 'Insanity' , 0);
    
-   //load store ds_grid array
+   //load store ds_grid array----------------------------------------------------------
    Ymax = round(ini_read_real('store dimentions', 'store height' , 38));
    Xmax = round(ini_read_real('store dimentions', 'store width' , 4));
    i = 0;
@@ -36,6 +36,27 @@ if (file_exists(working_directory + "save.ini"))
    i = i + 1;
    
    }
+   
+   //add dps over time based on save file values---------------------------------------------------
+   //save file variables already loaded into control_object
+   //set UTC time zone
+   date_set_timezone(timezone_utc);
+   
+   //compare the current and old time to get seconds
+   diff = date_second_span(ini_read_real('time', 'local', date_current_datetime()), date_current_datetime());
+  
+   //calculate damage done and round to nearest interger
+   damage = round(diff * DPS);
+   
+   // update varables with damage done
+   population = population - damage;
+   afflicted = afflicted + damage;
+   insanity = insanity + damage;
+   
+   //update in game variables with new values
+   obj_control.population = population;
+   obj_control.afflicted = afflicted;
+   obj_control.insanity = insanity;
    
    //close save file
    ini_close();
