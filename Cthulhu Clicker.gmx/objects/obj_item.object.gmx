@@ -80,6 +80,13 @@ if obj_store_control.item_price[parent] &lt;= obj_control.insanity
 obj_control.insanity -= obj_store_control.item_price[parent];
 obj_store_control.store[# 2, parent] ++;
 scr_item_update();
+
+//cityscape event
+if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent]
+{
+    scr_cityscapeevent_add(obj_store_control.store[# 11, parent],obj_store_control.store[# 9, parent]*obj_control.zoom,obj_store_control.store[# 10, parent]*obj_control.zoom);
+}
+
 }
 else {/*insuficient funds tone*/}
 }
