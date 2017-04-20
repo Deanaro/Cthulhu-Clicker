@@ -73,6 +73,7 @@ scr_item_update(); //updates price and DPS
           <argument>
             <kind>1</kind>
             <string>dragoverwrite = 1;
+
 </string>
           </argument>
         </arguments>
@@ -95,7 +96,7 @@ scr_item_update(); //updates price and DPS
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if drag = 1
+            <string>if drag = 1 
 {
 store_scroll += mouse_y - dragy;
 dragy = mouse_y;

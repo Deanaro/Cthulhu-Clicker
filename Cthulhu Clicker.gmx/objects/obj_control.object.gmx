@@ -25,6 +25,28 @@
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///INIT Game Parameters
+drag_distance = 200; //x distance before swipe is considered to be effective
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Resolution Management
 
 //get os and get screen resolution
@@ -80,7 +102,7 @@ population = 7000000000;
 afflicted = 0;
 insanity = 0;
 global.DPS = 0;
-image_speed = 7;
+
 //View Variables
 viewnum = 0;
 index_minView = -1; //The lowest numbered View
@@ -107,12 +129,16 @@ ui_dps = "";
 ui_entityWidth = 0;
 ui_entityHeight = 0;
 
+ui_click_start = 0;
+ui_click_drag = 0;
+
 //HUD draw precalcs
 view_count = abs(index_minView) + abs(index_maxView) + 1; //add together negative, zero and positive indexed views
 dot_plus_offset_width = sprite_get_width(spr_dot) + bOffset;
 all_dots_width = (view_count*dot_plus_offset_width-bOffset);
 dots_pos_start = (view_wview-all_dots_width)/2;
-//Arrows
+
+//Arrows [to remove]
 ui_arrow_width = sprite_get_width(spr_arrow);
 ui_arrow_height = sprite_get_height(spr_arrow);
 ui_arrow_right_xpos = view_wview - ui_arrow_width - bOffset;
@@ -333,9 +359,10 @@ obj_control.afflicted +=ceil(DPS/60);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Check UI Arrows
+            <string>///Check for UI Interaction
 if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through store
 {
+    //Check UI Arrows
     //Check inside verticle bounds
     if (mouse_y &gt; (ui_arrow_top) &amp;&amp; mouse_y &lt; (ui_arrow_bottom)) {
         //Check leftmost arrow
@@ -350,6 +377,68 @@ if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through st
         }   
     }
 }
+
+//Check for swipe
+var tmp_swipe = ui_click_drag - ui_click_start;
+if (abs(tmp_swipe) &gt; drag_distance) {
+    if (sign(tmp_swipe) = -1) {
+        scr_view_instant_right();
+    } else {
+        scr_view_instant_left();
+    }
+}
+ui_click_start = 0;
+ui_click_drag = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="53">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Start Swipe Checking
+ui_click_start = mouse_x;
+ui_click_drag = 0;
+
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Calculate swiping
+ui_click_drag = mouse_x;
 </string>
           </argument>
         </arguments>
@@ -414,7 +503,6 @@ viewoffset = view_wview * viewnum;
 Draw the economy HUD at the top of the screen*/
 ui_entityWidth = string_width(ui_insanity) *global.font_size;
 draw_text_transformed(bOffset + viewoffset, bOffset,ui_insanity,global.font_size,global.font_size,0);
-draw_sprite(spr_flame_coin, image_index, ui_entityWidth + bOffset + viewoffset, bOffset+ ui_entityHeight/2);
 
 ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1)*global.font_size + zoom; //Get string width of population entity to properly accurately y position
 draw_text_transformed(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps,global.font_size,global.font_size,0);
