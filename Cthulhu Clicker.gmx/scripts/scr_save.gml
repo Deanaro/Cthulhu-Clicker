@@ -7,10 +7,16 @@ if (file_exists("save.ini"))
    file_delete("save.ini");
    }
 
+//server time test
+var datetime = async_load[? "result"]   
+//convert responce from string to real number 
+ datetime = real(datetime); 
+
 //create new save file
 ini_open(working_directory + "save.ini");
 
 //save non arrayed values
+ini_write_real('server test', 'test', datetime);
 ini_write_real('Variables', 'Click damage' , click_damage);
 ini_write_real('Variables', 'DPS' , DPS);
 ini_write_real('Variables', 'Population' , population);

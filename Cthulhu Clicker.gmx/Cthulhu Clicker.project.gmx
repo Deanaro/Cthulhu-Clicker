@@ -3,6 +3,25 @@
   <Configs name="configs">
     <Config>Configs\Default</Config>
   </Configs>
+  <datafiles number="1" name="datafiles">
+    <datafile>
+      <name>datetime.php</name>
+      <exists>-1</exists>
+      <size>157</size>
+      <exportAction>2</exportAction>
+      <exportDir></exportDir>
+      <overwrite>0</overwrite>
+      <freeData>-1</freeData>
+      <removeEnd>0</removeEnd>
+      <store>0</store>
+      <ConfigOptions>
+        <Config name="Default">
+          <CopyToMask>9223372036854775807</CopyToMask>
+        </Config>
+      </ConfigOptions>
+      <filename>datetime.php</filename>
+    </datafile>
+  </datafiles>
   <NewExtensions/>
   <sounds name="sound">
     <sound>sound\snd_hum_placeholder</sound>
@@ -56,6 +75,7 @@
       <script>scripts\scr_save_clear.gml</script>
       <script>scripts\scr_save.gml</script>
       <script>scripts\scr_load.gml</script>
+      <script>scripts\scr_get_server_time.gml</script>
     </scripts>
     <scripts name="VFX">
       <scripts name="Particle System">
