@@ -6,17 +6,12 @@ if (file_exists("save.ini"))
    {
    file_delete("save.ini");
    }
-
-//server time test
-var datetime = async_load[? "result"]   
-//convert responce from string to real number 
- datetime = real(datetime); 
+ 
 
 //create new save file
 ini_open(working_directory + "save.ini");
 
 //save non arrayed values
-ini_write_real('server test', 'test', datetime);
 ini_write_real('Variables', 'Click damage' , click_damage);
 ini_write_real('Variables', 'DPS' , DPS);
 ini_write_real('Variables', 'Population' , population);
@@ -43,6 +38,8 @@ for(var i = 0; i<Ymax; i++)
 date_set_timezone(timezone_utc);
 ini_write_real('time', 'local', date_current_datetime());
 
+//save the current server time
+ini_write_real('time', 'server time', global.server_datetime);
 
 
 //close ini completing save

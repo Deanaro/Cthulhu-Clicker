@@ -204,7 +204,7 @@ instance_create(0,0,obj_menu_control);
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>1</string>
+            <string>150</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -239,6 +239,80 @@ cityscape_draw_list[0,2] = 0; //y
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>30</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>2</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///server time keeper
+
+//add a 30th of a second each step as game maker makes 30 steps a second ------------------ Lachlan
+global.server_datetime = global.server_datetime + 1;
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>30</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>2</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="1">
       <action>
@@ -257,7 +331,7 @@ cityscape_draw_list[0,2] = 0; //y
         <arguments>
           <argument>
             <kind>9</kind>
-            <script>scr_get_server_time</script>
+            <script>scr_save</script>
           </argument>
           <argument>
             <kind>0</kind>
@@ -297,7 +371,7 @@ cityscape_draw_list[0,2] = 0; //y
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>300</string>
+            <string>150</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -440,48 +514,6 @@ ui_click_drag = 0;
             <string>///Calculate swiping
 ui_click_drag = mouse_x;
 </string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="7" enumb="62">
-      <action>
-        <libid>1</libid>
-        <id>601</id>
-        <kind>0</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>1</exetype>
-        <functionname>action_execute_script</functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>9</kind>
-            <script>scr_save</script>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
-          </argument>
-          <argument>
-            <kind>0</kind>
-            <string></string>
           </argument>
         </arguments>
       </action>

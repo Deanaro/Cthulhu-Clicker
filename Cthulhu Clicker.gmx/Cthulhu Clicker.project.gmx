@@ -43,6 +43,7 @@
     <sprites name="Placeholders">
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
+      <sprite>sprites\spr_loading_screen</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_arrow</sprite>
@@ -93,6 +94,7 @@
       <object>objects\obj_control</object>
       <object>objects\obj_store_control</object>
       <object>objects\obj_menu_control</object>
+      <object>objects\obj_loading_control</object>
     </objects>
     <objects name="Store Objects">
       <object>objects\obj_item</object>
@@ -104,6 +106,7 @@
     <object>objects\obj_popup</object>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_loading</room>
     <room>rooms\rm_main</room>
   </rooms>
   <help>

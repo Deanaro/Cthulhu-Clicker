@@ -2,6 +2,6 @@
 
 
 
-datetime = http_get("https://lochiejohnson.000webhostapp.com/datetime.php");
+server_datetime = http_get("https://lochiejohnson.000webhostapp.com/datetime.php");
 
-return(datetime);
+return(server_datetime)

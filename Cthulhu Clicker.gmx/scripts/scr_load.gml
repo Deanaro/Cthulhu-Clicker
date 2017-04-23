@@ -37,25 +37,50 @@ if (file_exists(working_directory + "save.ini"))
    //set UTC time zone
    date_set_timezone(timezone_utc);
    
-   //compare the current and old time to get seconds
-   diff = date_second_span(ini_read_real('time', 'local', date_current_datetime()), date_current_datetime());
-  
-   //calculate damage done and round to nearest interger
-   damage = round(diff * DPS);
-   with instance_create(0,0,obj_popup)
+   //check if server time was not recived this play or last play note time is server time as of writing script
+   if(global.server_datetime > 1492918508)
    {
-   afkinsanity = other.damage;
+        if (ini_read_real('time', 'server time', global.server_datetime) > 1492918508)
+        {
+         //compare the current and old time to get seconds
+         diff =  global.server_datetime - ini_read_real('time', 'server time', global.server_datetime);
+  
+         //calculate damage done and round to nearest interger
+         damage = round(diff * DPS);
+         with instance_create(0,0,obj_popup)
+         {
+         afkinsanity = other.damage;
+         }
+   
+          // update varables with damage done
+          population = population - damage;
+          afflicted = afflicted + damage;
+          insanity = insanity + damage;
+   
+         //update in game variables with new values
+         obj_control.population = population;
+         obj_control.afflicted = afflicted;
+         obj_control.insanity = insanity;
+         }
+         
+         //pop up to explin no dps due to internet disconnection
+         else
+            {
+             obj_control.population = population;
+            obj_control.afflicted = afflicted;
+            obj_control.insanity = insanity;
+             }
+   }
+   //pop up to explin no dps due to internet disconnection
+   else
+   {
+        obj_control.population = population;
+         obj_control.afflicted = afflicted;
+         obj_control.insanity = insanity;
    }
    
-   // update varables with damage done
-   population = population - damage;
-   afflicted = afflicted + damage;
-   insanity = insanity + damage;
    
-   //update in game variables with new values
-   obj_control.population = population;
-   obj_control.afflicted = afflicted;
-   obj_control.insanity = insanity;
+   
    
    //close save file
    ini_close();
