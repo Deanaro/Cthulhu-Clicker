@@ -1,3 +1,5 @@
+///adds an item to the store ds_grid
+//~DC
 var temp = ds_grid_height(store);
 ds_grid_resize(store,10,temp+1);
 ds_grid_add(store, 0, temp, argument0);    //name

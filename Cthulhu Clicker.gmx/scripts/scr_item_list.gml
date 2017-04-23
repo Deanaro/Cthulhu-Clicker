@@ -1,6 +1,7 @@
+///a list of all the items, new items to be created here1
+//~DC
+
 store = ds_grid_create(0,0);
-
-
 //set max level to -1 if there is no max level.
 //item type is indexed. item types will be defined later.
 //set event level to 0 if there is no event.

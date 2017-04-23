@@ -1,4 +1,5 @@
 ///updates the cost and damage of items in the store
+//~DC
 obj_control.DPS = 0;
 for(var i =0;i < ds_grid_height(obj_store_control.store);i++)
 {

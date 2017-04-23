@@ -26,9 +26,11 @@
           <argument>
             <kind>1</kind>
             <string>///scroll draw calculations
+//~DC
 scroll_corner_width = sprite_get_width(spr_scroll_Rtop) *obj_control.zoom;
 scroll_corner_height = sprite_get_height(spr_scroll_Rtop)*obj_control.zoom;
 scroll_section_length = ceil((view_wview-2*scroll_corner_width)/(16*obj_control.zoom))
+//randomizes the scrolls roll section tiles.
 for(var i = 0; i&lt; scroll_section_length; i++)
 {
 scroll_section_frame[i] = irandom(5);
@@ -54,18 +56,23 @@ scroll_section_frame[i] = irandom(5);
           <argument>
             <kind>1</kind>
             <string>///create item list
-
+//~DC
+//scroll SETUP-------------------------------------------------
 image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);
 store_scroll = 0;
 drag = 0;
 dragoverwrite = 0;
-//check is save exists if so load it
-scr_item_list();
-scr_load();
+//--------------------------------------------------------------
+
+scr_item_list(); //initilise item list
+scr_load(); //check is save exists if so load it
+
+//create item instnaces ----------------------------------------
+//create icon --------------------------------------------------
 for(var i=0; i &lt; ds_grid_height(store); i++)
 {
-item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (2+32*i)*obj_control.zoom,obj_item)
+item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (2+32*i)*obj_control.zoom,obj_item) 
     with item
     {
     sprite_index = obj_store_control.store[# 1,i];
@@ -81,7 +88,8 @@ item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj
                 image_blend = c_white;
             }
     }
-with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display_center + scroll_corner_height + (5+32*i)*obj_control.zoom,obj_upgrade_button)
+//create button --------------------------------------------------
+with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display_center + scroll_corner_height + (5+32*i)*obj_control.zoom,obj_upgrade_button) 
     {
     item = other.item
     image_xscale = obj_control.zoom;
@@ -89,7 +97,10 @@ with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display
     parent = i;
     }
 }
-scr_item_update(); //updates price and DPS
+//-----------------------------------------------------------------
+//updates price and DPs
+scr_item_update(); 
+//saves the store height into a variable
 scroll_height = -ds_grid_height(store)*32*obj_control.zoom + obj_control.display_center - 2*scroll_corner_height + 8*obj_control.zoom;
 </string>
           </argument>
@@ -113,7 +124,9 @@ scroll_height = -ds_grid_height(store)*32*obj_control.zoom + obj_control.display
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>dragoverwrite = 1;
+            <string>//after this alarm activates, dragoverwrite is set to 1, meaning buttons wont work anymore
+//~DC
+dragoverwrite = 1;
 
 </string>
           </argument>
@@ -137,8 +150,11 @@ scroll_height = -ds_grid_height(store)*32*obj_control.zoom + obj_control.display
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if drag = 1 
+            <string>///store scrolling
+//~DC
+if drag = 1 //checks if mouse is being dragged
 {
+//displaces the store items by the change of mouse_y from the y coordinate where the moust was clicked
 store_scroll += mouse_y - dragy;
 dragy = mouse_y;
 if store_scroll &gt; 0 {store_scroll = 0;}
@@ -167,7 +183,9 @@ else if store_scroll &lt; scroll_height
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>drag = 0;
+            <string>///end store scrolling
+//~DC
+drag = 0;
 dragoverwrite = 0;
 alarm[0] = 0;
 </string>
@@ -192,7 +210,8 @@ alarm[0] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>alarm[0] = 10;
+            <string>//~DC
+alarm[0] = 10;
 drag = 1;
 dragy = mouse_y;
 </string>
@@ -218,14 +237,15 @@ dragy = mouse_y;
           <argument>
             <kind>1</kind>
             <string>///draw_scroll
-
+//~DC
+//rolls -------------------------------------
 for(var i = 0; i&lt; scroll_section_length; i++)
 {
     draw_sprite_ext(spr_scroll_top,scroll_section_frame[i],view_wview+scroll_corner_width+(16*i*obj_control.zoom),obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
     draw_sprite_ext(spr_scroll_bot,scroll_section_frame[i],view_wview+scroll_corner_width+(16*i*obj_control.zoom),view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
 }
 
-//corners
+//corners -----------------------------------
 draw_sprite_ext(spr_scroll_Ltop,0,view_wview,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
 draw_sprite_ext(spr_scroll_Lbot,0,view_wview,view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
 draw_sprite_ext(spr_scroll_Rtop,0,2*view_wview-scroll_corner_width,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);

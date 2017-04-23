@@ -50,18 +50,21 @@ depth = -10;
             <kind>1</kind>
             <string>///Resolution Management
 
+            width = 620;
+            height = 840;
+
 //get os and get screen resolution
 switch (os_type)
     {
-    case os_windows: var screen_height = 840; var screen_width = 620; break;
+    case os_windows: var screen_height = height; var screen_width = width; break;
     case os_android: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
-    case os_linux: var screen_height = 840; var screen_width = 620; break;
-    case os_macosx: var screen_height = 840; var screen_width = 620; break;
+    case os_linux: var screen_height = height; var screen_width = width; break;
+    case os_macosx: var screen_height = height; var screen_width = width; break;
     case os_ios: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
     case os_winphone: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
-    case os_unknown: var screen_height = 840; var screen_width = 620; break;
+    case os_unknown: var screen_height = height; var screen_width = width; break;
     }
-window_set_position(0, 24);
+window_set_position(32, 32);
 
 /*  DONT CHANGE    */
 surface_resize(application_surface,screen_width,screen_height); //resizes the surface to the resolution
@@ -205,38 +208,11 @@ instance_create(0,0,obj_menu_control);
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>150</string>
+            <string>30</string>
           </argument>
           <argument>
             <kind>4</kind>
-            <string>1</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///cityscape event draw
-//0 -&gt; sprite name
-//1 -&gt; x coord
-//2 -&gt; y coord
-cityscape_draw_list[0,0] = 0; //sprite
-cityscape_draw_list[0,1] = 0; //x
-cityscape_draw_list[0,2] = 0; //y
-</string>
+            <string>2</string>
           </argument>
         </arguments>
       </action>
@@ -256,11 +232,11 @@ cityscape_draw_list[0,2] = 0; //y
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>30</string>
+            <string>150</string>
           </argument>
           <argument>
             <kind>4</kind>
-            <string>2</string>
+            <string>1</string>
           </argument>
         </arguments>
       </action>
@@ -547,7 +523,7 @@ draw_sprite_ext( spr_sky, 0, 0, view_hview/2, 300, 300, 0, c_white, 1 );
 /* Cityscape ------------------------
 Draw the cityscape 
 !!! This needs to be moved to it's own script imo, the monsters/city is a big element and will need its own controller - Harry
-!!! moved - Deam */
+!!! moved - Dean */
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 </string>
           </argument>
@@ -598,7 +574,7 @@ draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset, bOf
 
 
 /* View Move Arrows ------------------------ 
-Draw the view move arrows */
+Draw the view move arrows 
 if (viewnum != index_minView) {
     draw_sprite(spr_arrow, 0, view_xview + ui_arrow_left_xpos, ui_arrow_ypos);
 }
@@ -607,7 +583,7 @@ if (viewnum != index_maxView) {
 }
 
 /* View Dot Indicator ------------------------ 
-Draw indicators of the views at the bottom of the screen */
+Draw indicators of the views at the bottom of the screen *
 draw_set_alpha(0.6);
 for (i = 0; i &lt; view_count; i++) {
     if (i-abs(index_minView) = viewnum) {
@@ -616,7 +592,7 @@ for (i = 0; i &lt; view_count; i++) {
         draw_sprite(spr_dot, 1, dots_pos_start + (i*dot_plus_offset_width) + view_xview, view_hview-38);
     }
 }
-draw_set_alpha(1); //return opactiy to default
+draw_set_alpha(1); //return opactiy to default */
 </string>
           </argument>
         </arguments>
