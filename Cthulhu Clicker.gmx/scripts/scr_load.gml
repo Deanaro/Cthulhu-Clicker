@@ -17,10 +17,7 @@ if (file_exists(working_directory + "save.ini"))
    var afflicted = ini_read_real('Variables', 'Afflicted' , 0);
    var insanity = ini_read_real('Variables', 'Insanity' , 0);
    
-  /*//load store ds_grid array----------------------------------------------------------   //not needed.
-   Ymax = round(ini_read_real('store dimentions', 'store height' , 38));                                    
-   Xmax = round(ini_read_real('store dimentions', 'store width' , 4));
-   i = 0;
+
    
    //make array
    obj_store_control.store = ds_grid_create(Xmax,Ymax); //index,name,level,startval,icon */
@@ -37,13 +34,16 @@ if (file_exists(working_directory + "save.ini"))
    //set UTC time zone
    date_set_timezone(timezone_utc);
    
-   //check if server time was not recived this play or last play note time is server time as of writing script
+   //get save date time
+   var save_datetime = ini_read_real('time', 'server time', global.server_datetime);
+   
+   //check if server time was not recived this play or last play note: compared time is server time as of writing script
    if(global.server_datetime > 1492918508)
    {
-        if (ini_read_real('time', 'server time', global.server_datetime) > 1492918508)
+        if (save_datetime > 1492918508)
         {
          //compare the current and old time to get seconds
-         diff =  global.server_datetime - ini_read_real('time', 'server time', global.server_datetime);
+         var diff =  global.server_datetime - save_datetime;
   
          //calculate damage done and round to nearest interger
          damage = round(diff * DPS);

@@ -1,5 +1,6 @@
 //this script can be called at any time to initiate a save
 
+//requires no arguments
 
 //check for and delete old file
 if (file_exists("save.ini")) 

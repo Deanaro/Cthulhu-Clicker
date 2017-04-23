@@ -208,7 +208,7 @@ instance_create(0,0,obj_menu_control);
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>30</string>
+            <string>60</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -260,7 +260,7 @@ instance_create(0,0,obj_menu_control);
             <kind>1</kind>
             <string>///server time keeper
 
-//add a 30th of a second each step as game maker makes 30 steps a second ------------------ Lachlan
+//every 60 steps add 1 second to server date time ------------------ Lachlan
 global.server_datetime = global.server_datetime + 1;
 </string>
           </argument>
@@ -282,7 +282,7 @@ global.server_datetime = global.server_datetime + 1;
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>30</string>
+            <string>60</string>
           </argument>
           <argument>
             <kind>4</kind>
@@ -348,7 +348,7 @@ global.server_datetime = global.server_datetime + 1;
         <arguments>
           <argument>
             <kind>0</kind>
-            <string>150</string>
+            <string>300</string>
           </argument>
           <argument>
             <kind>4</kind>
