@@ -25,9 +25,10 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>boffset = 10; //border offset
-spaceoffset = 32 * obj_control.zoom//space offset
-view_num = 1;
+            <string>depth = obj_store_control.depth + 2;
+//make colors~~
+c_scroll_base = make_color_rgb(205,199,177);
+c_scroll_border = make_color_rgb(86,74,86);
 </string>
           </argument>
         </arguments>
@@ -56,45 +57,6 @@ view_num = 1;
         </arguments>
       </action>
     </event>
-    <event eventtype="6" enumb="7">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>if obj_store_control.dragoverwrite = 0 and mouse_y &gt; obj_control.display_center //if not currently scrolling through store
-{
-if obj_store_control.item_price[parent] &lt;= obj_control.insanity
-{
-obj_control.insanity -= obj_store_control.item_price[parent];
-obj_store_control.store[# 2, parent] ++;
-scr_item_update();
-
-//cityscape event
-if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent]
-{
-    scr_cityscapeevent_add(obj_store_control.store[# 11, parent],obj_store_control.store[# 9, parent]*obj_control.zoom,obj_store_control.store[# 10, parent]*obj_control.zoom);
-}
-
-}
-else {/*insuficient funds tone*/}
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -112,15 +74,23 @@ else {/*insuficient funds tone*/}
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_self();
+            <string>//***************draw scroll section
+draw_set_color(c_scroll_base);
+draw_rectangle(view_wview + 14*obj_control.zoom,y - 8*obj_control.zoom,2*view_wview - 14*obj_control.zoom,y + 24*obj_control.zoom,0);
+draw_sprite_ext(spr_scroll_section,0,view_wview + 12*obj_control.zoom, y - 8*obj_control.zoom,obj_control.zoom,obj_control.zoom,0,c_white,1);
+draw_sprite_ext(spr_scroll_section,0,2*view_wview - 12*obj_control.zoom, y - 8*obj_control.zoom,-obj_control.zoom,obj_control.zoom,0,c_white,1);
+//**************draw icon
+draw_self();
+
+//**************draw_ values
 draw_set_font(fnt_defualt); draw_set_color(c_black);
-/*name  */draw_text_transformed(/*x*/view_wview * view_num + boffset + 1 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, string(obj_store_control.store[# 0,parent]), global.font_size,global.font_size,0);
+
+/*name  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (2)*obj_control.zoom, string(obj_store_control.store[# 0,parent]), global.font_size,global.font_size,0);
 draw_set_font(obj_control.fnt_test); draw_set_color(c_white);
-/*level */draw_text_transformed(/*x*/view_wview * view_num + boffset + 0 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, string(obj_store_control.store[# 2,parent]), global.font_size,global.font_size,0);
-/*price */draw_text_transformed(/*x*/view_wview * view_num + boffset + 2 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, "price:  " + string(obj_store_control.item_price[parent]), global.font_size,global.font_size,0);
+/*level */draw_text_transformed(/*x*/x + 1  ,/*y*/  y  +1, string(obj_store_control.store[# 2,parent]), global.font_size,global.font_size,0);
 if obj_store_control.store[# 1, parent] != 0
 {
-/*DPS  */draw_text_transformed(/*x*/view_wview * view_num + boffset + 3 * spaceoffset  ,/*y*/  view_hview / 2 + 10 + (boffset+24*parent)*obj_control.zoom + obj_store_control.store_scroll, "DPS: " + string(obj_store_control.item_DPS[parent]), global.font_size,global.font_size,0);
+/*DPS  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (10)*obj_control.zoom, "DPS: " + string(obj_store_control.item_DPS[parent]), global.font_size,global.font_size,0);
 }
 </string>
           </argument>

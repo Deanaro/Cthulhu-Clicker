@@ -28,6 +28,7 @@
             <string>image_xscale = obj_control.zoom;
 image_yscale = obj_control.zoom;
 afkinsanity=0;
+depth = -10000;
 </string>
           </argument>
         </arguments>

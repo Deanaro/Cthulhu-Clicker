@@ -20,6 +20,6 @@
   <width>22</width>
   <height>22</height>
   <frames>
-    <frame index="0">images\spr_placeholdericon_0.png</frame>
+    <frame index="0">images\spr_icon_locked_0.png</frame>
   </frames>
 </sprite>

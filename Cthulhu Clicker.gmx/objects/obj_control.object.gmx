@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///INIT Game Parameters
 drag_distance = 200; //x distance before swipe is considered to be effective
+depth = -10;
 </string>
           </argument>
         </arguments>
@@ -69,7 +70,7 @@ view_wview = screen_width;  //resizes the view to the resolution
 view_hview = screen_height;
 
 /*  Useful Variables */
-zoom = round(view_wview/(sprite_get_width(spr_clicker) * 4)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
+zoom = round(view_wview/(sprite_get_width(spr_clicker) * 7)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
 //DELETE create instances in porportion to the view
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
 display_right = view_wview; //the y coordinate of window right side
@@ -158,7 +159,7 @@ alarm[0] = 1;
 fnt_test = font_add_sprite_ext(spr_fonttest,"0123456789",false,0);
 draw_set_font(fnt_test);
 draw_set_color(c_white);
-global.font_size = floor(zoom/4)
+global.font_size = ceil(zoom/4)
 </string>
           </argument>
         </arguments>
@@ -535,12 +536,19 @@ ui_click_drag = mouse_x;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Draw background
+            <string>///Cityscape Draw
 /* due to how game maker layers sprites the background must be
 drawn first */
 
 // Draw sky -------------------
 draw_sprite_ext( spr_sky, 0, 0, view_hview/2, 300, 300, 0, c_white, 1 );
+
+
+/* Cityscape ------------------------
+Draw the cityscape 
+!!! This needs to be moved to it's own script imo, the monsters/city is a big element and will need its own controller - Harry
+!!! moved - Deam */
+draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 </string>
           </argument>
         </arguments>
@@ -588,10 +596,6 @@ ui_entityWidth = string_width(ui_afflicted) *global.font_size; //Get string widt
 ui_entityHeight = string_height_ext(ui_population, tOffset, -1) *global.font_size + zoom; //Get string width of population entity to properly accurately y position
 draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted,global.font_size,global.font_size,0); //draw the afflicted value
 
-/* Cityscape ------------------------
-Draw the cityscape 
-!!! This needs to be moved to it's own script imo, the monsters/city is a big element and will need its own controller - Harry*/
-draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
 
 /* View Move Arrows ------------------------ 
 Draw the view move arrows */
@@ -613,37 +617,6 @@ for (i = 0; i &lt; view_count; i++) {
     }
 }
 draw_set_alpha(1); //return opactiy to default
-</string>
-          </argument>
-        </arguments>
-      </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw Cityscape Sprite Events
-if cityscape_draw_list[0,0] !=0
-{
-
-
-drawlistlength = array_height_2d(cityscape_draw_list);
-for(var i=0; i&lt;drawlistlength; i++)
-{
-    draw_sprite_ext(cityscape_draw_list[i,0],0,cityscape_draw_list[i,1],cityscape_draw_list[i,2],zoom,zoom,0,c_white,1);
-}
-}
 </string>
           </argument>
         </arguments>

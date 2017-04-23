@@ -30,31 +30,49 @@
     <sound>sound\snd_placeholder_music</sound>
   </sounds>
   <sprites name="sprites">
-    <sprite>sprites\spr_control</sprite>
-    <sprite>sprites\spr_clicker</sprite>
-    <sprite>sprites\spr_cityscape</sprite>
-    <sprite>sprites\spr_sky</sprite>
     <sprites name="font">
       <sprite>sprites\spr_fonttest</sprite>
     </sprites>
-    <sprites name="Item Icons">
-      <sprite>sprites\spr_placeholdericon</sprite>
-    </sprites>
     <sprites name="Placeholders">
+      <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
       <sprite>sprites\spr_loading_screen</sprite>
     </sprites>
     <sprites name="UI">
+      <sprite>sprites\spr_exit</sprite>
       <sprite>sprites\spr_arrow</sprite>
       <sprite>sprites\spr_dot</sprite>
     </sprites>
     <sprites name="Unused">
+      <sprite>sprites\spr_cityscape_event</sprite>
       <sprite>sprites\spr_flame_coin</sprite>
       <sprite>sprites\spr_coin_green</sprite>
     </sprites>
-    <sprite>sprites\spr_exit</sprite>
-    <sprite>sprites\spr_cityscape_event</sprite>
+    <sprites name="store_sprites">
+      <sprites name="Item Icons">
+        <sprite>sprites\spr_placeholdericon</sprite>
+        <sprite>sprites\spr_icon_locked</sprite>
+        <sprite>sprites\spr_icon_tentacle</sprite>
+      </sprites>
+      <sprites name="scroll">
+        <sprite>sprites\spr_scroll_Rtop</sprite>
+        <sprite>sprites\spr_scroll_Rbot</sprite>
+        <sprite>sprites\spr_scroll_Ltop</sprite>
+        <sprite>sprites\spr_scroll_Lbot</sprite>
+        <sprite>sprites\spr_scroll_top</sprite>
+        <sprite>sprites\spr_scroll_bot</sprite>
+        <sprite>sprites\spr_scroll_section</sprite>
+      </sprites>
+      <sprite>sprites\spr_upgrade_button</sprite>
+    </sprites>
+    <sprites name="Clicker">
+      <sprite>sprites\spr_clicker</sprite>
+    </sprites>
+    <sprites name="CityScape">
+      <sprite>sprites\spr_cityscape</sprite>
+      <sprite>sprites\spr_sky</sprite>
+    </sprites>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -84,12 +102,12 @@
         <script>scripts\scr_part_Clicker.gml</script>
       </scripts>
     </scripts>
-    <script>scripts\scr_cityscapeevent_add.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_defualt</font>
   </fonts>
   <objects name="objects">
+    <object>objects\obj_clicker</object>
     <objects name="Control Objects">
       <object>objects\obj_control</object>
       <object>objects\obj_store_control</object>
@@ -98,12 +116,14 @@
     </objects>
     <objects name="Store Objects">
       <object>objects\obj_item</object>
+      <object>objects\obj_upgrade_button</object>
     </objects>
     <objects name="Menu Objects">
       <object>objects\obj_menu_reset</object>
     </objects>
-    <object>objects\obj_clicker</object>
-    <object>objects\obj_popup</object>
+    <objects name="UI">
+      <object>objects\obj_popup</object>
+    </objects>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_loading</room>
