@@ -19,8 +19,7 @@ if (file_exists(working_directory + "save.ini"))
    
 
    
-   //make array
-   obj_store_control.store = ds_grid_create(Xmax,Ymax); //index,name,level,startval,icon */
+  
    
    //fill array
    
