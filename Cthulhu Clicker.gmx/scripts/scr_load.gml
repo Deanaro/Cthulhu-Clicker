@@ -65,17 +65,38 @@ if (file_exists(working_directory + "save.ini"))
          //pop up to explin no dps due to internet disconnection
          else
             {
-             obj_control.population = population;
-            obj_control.afflicted = afflicted;
-            obj_control.insanity = insanity;
+                 //set variables
+                 obj_control.population = population;
+                 obj_control.afflicted = afflicted;
+                 obj_control.insanity = insanity;
+                 
+                 //reason for no dps
+                 reason = "
+                 no server connection at end of last play";
+                 
+                 with instance_create(0,0,obj_no_dps)
+                 {
+                 reason = other.reason;
+                 }
+                 
              }
    }
    //pop up to explin no dps due to internet disconnection
    else
    {
-        obj_control.population = population;
+         obj_control.population = population;
          obj_control.afflicted = afflicted;
          obj_control.insanity = insanity;
+         
+         //reason for no dps
+                 reason = "
+                 no server connection established";
+                 
+                 with instance_create(0,0,obj_no_dps)
+                 {
+                 reason = other.reason;
+                 }
+         
    }
    
    

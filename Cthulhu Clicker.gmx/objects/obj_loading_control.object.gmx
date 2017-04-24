@@ -70,6 +70,9 @@ view_hview = screen_height;
             <string>///set network settings
 //lachlan
 
+//server connection variable
+global.server_connection = 0;
+
 //set default time out time
 network_set_config(network_config_connect_timeout,6000);
 
@@ -123,26 +126,6 @@ attempt = 0;
           </argument>
         </arguments>
       </action>
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string></string>
-          </argument>
-        </arguments>
-      </action>
     </event>
     <event eventtype="7" enumb="62">
       <action>
@@ -168,15 +151,18 @@ attempt = 0;
 server_datetime = async_load[? "result"] ;
 server_responce_code= async_load[? "http_status"]
 
+//make responce real
+server_datetime = real(server_datetime);
 
 //check that code is 200 a.k.a OK
-if(server_responce_code = 200)
+if(server_responce_code = 200 &amp;&amp; server_datetime &gt; 1492918508)
 {
-    //make responce real
-    server_datetime = real(server_datetime);
-
+    
     //make global
     global.server_datetime = server_datetime;
+    
+    //set server connection true
+    global.server_connection = 1;
     
     //goto main room
     room_goto(rm_main);
@@ -194,6 +180,9 @@ else
     {
         //max attemts made date time returns 0
         global.server_datetime = 0
+        
+        //set server connecttion false
+        global.server_connection = 0;
     
         //goto main room
         room_goto(rm_main);

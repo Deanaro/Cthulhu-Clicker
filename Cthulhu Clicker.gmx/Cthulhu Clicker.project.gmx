@@ -123,6 +123,7 @@
     </objects>
     <objects name="UI">
       <object>objects\obj_popup</object>
+      <object>objects\obj_no_dps</object>
     </objects>
   </objects>
   <rooms name="rooms">

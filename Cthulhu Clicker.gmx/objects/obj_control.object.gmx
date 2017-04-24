@@ -28,6 +28,10 @@
             <string>///INIT Game Parameters
 drag_distance = 350; //x distance before swipe is considered to be effective
 depth = -10;
+if (global.server_connection = 0)          //if a server connection is not established continue to try --- lachlan
+    {
+    alarm[3] = 3600; //every 1 minutes retry
+    }
 </string>
           </argument>
         </arguments>
@@ -237,6 +241,36 @@ instance_create(0,0,obj_menu_control);
           <argument>
             <kind>4</kind>
             <string>1</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="3">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// reattempt server connection
+// lachlan
+
+if (global.server_connection = 0) //check server connection has not been made
+    {
+    scr_get_server_time(); //attempt to connect to server
+    alarm[3] = 3600; //every 1 minutes retry
+    }
+</string>
           </argument>
         </arguments>
       </action>
@@ -490,6 +524,51 @@ ui_click_drag = 0;
             <kind>1</kind>
             <string>///Calculate swiping
 ui_click_drag = mouse_x;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="7" enumb="62">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>/// check responce and take nessisary action
+//lachlan
+
+//get responce
+server_datetime = async_load[? "result"] ;
+server_responce_code= async_load[? "http_status"]
+
+
+//check that code is 200 a.k.a OK
+if(server_responce_code = 200 &amp;&amp; server_datetime &gt; 1492918508)
+{
+    //make responce real
+    server_datetime = real(server_datetime);
+
+    //make global
+    global.server_datetime = server_datetime;
+    
+    //set server connection true
+    global.server_connection = 1;
+    
+    
+}
+
 </string>
           </argument>
         </arguments>
