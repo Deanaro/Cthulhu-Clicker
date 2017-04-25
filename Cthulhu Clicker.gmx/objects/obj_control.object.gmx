@@ -26,7 +26,7 @@
           <argument>
             <kind>1</kind>
             <string>///INIT Game Parameters
-drag_distance = 350; //x distance before swipe is considered to be effective
+drag_distance = 300; //x distance before swipe is considered to be effective
 depth = -10;
 if (global.server_connection = 0)          //if a server connection is not established continue to try --- lachlan
     {
@@ -464,16 +464,18 @@ if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through st
 }
 
 //Check for swipe
-var tmp_swipe = ui_click_drag - ui_click_start;
-if (abs(tmp_swipe) &gt; drag_distance) {
-    if (sign(tmp_swipe) = -1) {
-        scr_view_instant_right();
-    } else {
-        scr_view_instant_left();
+if (ui_swipe_start) {
+    var tmp_swipe = mouse_x - ui_click_start;
+    if (abs(tmp_swipe) &gt; drag_distance) {
+        if (sign(tmp_swipe) = -1) {
+            scr_view_instant_right();
+        } else {
+            scr_view_instant_left();
+        }
     }
+    ui_click_start = 0;
 }
-ui_click_start = 0;
-ui_click_drag = 0;
+ui_swipe_start = false;
 </string>
           </argument>
         </arguments>
@@ -498,32 +500,8 @@ ui_click_drag = 0;
             <kind>1</kind>
             <string>///Start Swipe Checking
 ui_click_start = mouse_x;
-ui_click_drag = 0;
+ui_swipe_start = true;
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="6" enumb="50">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Calculate swiping
-ui_click_drag = mouse_x;
 </string>
           </argument>
         </arguments>

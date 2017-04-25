@@ -211,7 +211,7 @@ alarm[0] = 0;
           <argument>
             <kind>1</kind>
             <string>//~DC
-alarm[0] = 10;
+alarm[0] = 10; //after this alarm activates, dragoverwrite is set to 1, meaning buttons wont work anymore
 drag = 1;
 dragy = mouse_y;
 </string>
