@@ -28,10 +28,7 @@
             <string>///INIT Game Parameters
 drag_distance = 300; //x distance before swipe is considered to be effective
 depth = -10;
-if (global.server_connection = 0)          //if a server connection is not established continue to try --- lachlan
-    {
-    alarm[3] = 3600; //every 1 minutes retry
-    }
+
 </string>
           </argument>
         </arguments>
@@ -244,6 +241,56 @@ instance_create(0,0,obj_menu_control);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>3600</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>3</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="4">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///when game is unpaused restart
+
+//lachlan
+game_restart();
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="3">
       <action>
@@ -422,6 +469,37 @@ obj_control.insanity +=ceil(DPS/60);
 obj_control.population -=ceil(DPS/60);
 obj_control.afflicted +=ceil(DPS/60);
 }
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///check is the game has been minimised
+//lachlan
+
+if os_is_paused()
+    {
+    alarm [4] = 1
+    scr_save();
+    }
+    
 </string>
           </argument>
         </arguments>
