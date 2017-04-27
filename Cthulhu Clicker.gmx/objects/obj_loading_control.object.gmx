@@ -3,7 +3,7 @@
   <spriteName>spr_control</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -41,7 +41,7 @@ switch (os_type)
     case os_winphone: var screen_height = display_get_height(); var screen_width = display_get_width(); break;
     case os_unknown: var screen_height = height; var screen_width = width; break;
     }
-window_set_position(0, 0);
+window_set_position(32, 32);
 
 /*  DONT CHANGE    */
 surface_resize(application_surface,screen_width,screen_height); //resizes the surface to the resolution
@@ -55,7 +55,9 @@ display_center = view_hview/2; //the y coordinate at which the botton of the cit
 display_right = view_wview; //the y coordinate of window right side
 display_025= view_wview/4; //one quarter of screen width
 
-
+//zoom variables
+zoom_loading = round(view_wview/(sprite_get_width(spr_loading) * 3));
+zoom_icon = round(view_wview/(sprite_get_width(spr_loading_icon) * 7));
 </string>
           </argument>
         </arguments>
@@ -132,6 +134,43 @@ attempt = 0;
           <argument>
             <kind>0</kind>
             <string></string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///spawn loading screen objects
+//lachlan
+
+Loading_textID = instance_create((view_wview/2),view_hview*1/4 ,obj_loading_text)
+Loading_iconID = instance_create((view_wview/2),view_hview*2/4 ,obj_loading_bar)
+
+with (obj_loading_text)
+    {
+    image_xscale = other.zoom_loading;
+    image_yscale = other.zoom_loading;
+    }
+    
+with (obj_loading_bar)
+    {
+    image_xscale = other.zoom_icon;
+    image_yscale = other.zoom_icon;
+    }
+</string>
           </argument>
         </arguments>
       </action>

@@ -38,6 +38,10 @@
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
       <sprite>sprites\spr_loading_screen</sprite>
+      <sprites name="Loading screen">
+        <sprite>sprites\spr_loading</sprite>
+        <sprite>sprites\spr_loading_icon</sprite>
+      </sprites>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_exit</sprite>
@@ -124,6 +128,10 @@
     <objects name="UI">
       <object>objects\obj_popup</object>
       <object>objects\obj_no_dps</object>
+    </objects>
+    <objects name="loading screen">
+      <object>objects\obj_loading_bar</object>
+      <object>objects\obj_loading_text</object>
     </objects>
   </objects>
   <rooms name="rooms">
