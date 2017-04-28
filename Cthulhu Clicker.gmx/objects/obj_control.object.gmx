@@ -652,8 +652,7 @@ if(server_responce_code = 200 &amp;&amp; server_datetime &gt; 1492918508)
 drawn first */
 
 // Draw sky -------------------
-//draw_sprite_ext( spr_sky2, 0, 0, view_hview/2, sprite_get_width(spr_loading_background))* view_wview, sprite_get_height(spr_loading_background))* view_hview, 0, c_white, 1 );//changed to use new gradient sky, old one can be used with spr_sky
-draw_sprite_pos(spr_sky2, 0, 0, 0, view_wview, 0, view_wview, view_hview/2, 0, view_hview/2, 1);//changed to use new gradient sky, old one can be used with spr_sky - lachlan
+draw_sprite_pos(spr_sky2, 0, 0, 0, view_wview*3, 0, view_wview*3, view_hview/2, 0, view_hview/2, 1);//changed to use new gradient sky, old one can be used with spr_sky - lachlan
 
 /* Cityscape ------------------------
 Draw the cityscape 
