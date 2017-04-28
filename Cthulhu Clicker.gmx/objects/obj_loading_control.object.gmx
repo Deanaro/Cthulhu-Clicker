@@ -56,7 +56,7 @@ display_right = view_wview; //the y coordinate of window right side
 display_025= view_wview/4; //one quarter of screen width
 
 //zoom variables
-zoom_loading = round(view_wview/(sprite_get_width(spr_loading) * 3));
+zoom_loading = round(view_wview/(sprite_get_width(spr_loading) * 2));
 zoom_icon = round(view_wview/(sprite_get_width(spr_loading_icon) * 7));
 </string>
           </argument>
@@ -155,10 +155,20 @@ attempt = 0;
             <kind>1</kind>
             <string>///spawn loading screen objects
 //lachlan
+//draw backgrond sprite
+draw_sprite_pos(spr_loading_background, 0, 0, 0, view_wview, 0, view_wview, view_hview, 0, view_hview, 1);
 
-Loading_textID = instance_create((view_wview/2),view_hview*1/4 ,obj_loading_text)
-Loading_iconID = instance_create((view_wview/2),view_hview*2/4 ,obj_loading_bar)
+//draw and scale loading screen objects
+Loading_backgroundID = instance_create(0,0 ,obj_loading_background)
+Loading_textID = instance_create((view_wview/2),view_hview*1/3 ,obj_loading_text)
+Loading_iconID = instance_create((view_wview/2),view_hview*3/4 ,obj_loading_bar)
 
+
+with (obj_loading_background)
+    {
+    image_xscale = (image_xscale/sprite_get_width(spr_loading_background))* view_wview;
+    image_yscale = (image_yscale/sprite_get_width(spr_loading_background))* view_hview;
+    }
 with (obj_loading_text)
     {
     image_xscale = other.zoom_loading;
@@ -240,32 +250,6 @@ else
 }
 
 
-</string>
-          </argument>
-        </arguments>
-      </action>
-    </event>
-    <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>/// draw loading screen
-//---lachlan
-//draw_sprite_pos(spr_loading_screen, 0, 0, 0, view_wview, 0, view_wview, view_hview , 0, view_hview , 1);
-draw_text(view_wview, display_center, "Loading....");
 </string>
           </argument>
         </arguments>

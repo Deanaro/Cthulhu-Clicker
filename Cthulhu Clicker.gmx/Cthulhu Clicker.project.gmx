@@ -37,10 +37,10 @@
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
-      <sprite>sprites\spr_loading_screen</sprite>
       <sprites name="Loading screen">
         <sprite>sprites\spr_loading</sprite>
         <sprite>sprites\spr_loading_icon</sprite>
+        <sprite>sprites\spr_loading_background</sprite>
       </sprites>
     </sprites>
     <sprites name="UI">
@@ -76,6 +76,7 @@
     <sprites name="CityScape">
       <sprite>sprites\spr_cityscape</sprite>
       <sprite>sprites\spr_sky</sprite>
+      <sprite>sprites\spr_sky2</sprite>
     </sprites>
   </sprites>
   <backgrounds name="background">
@@ -132,6 +133,7 @@
     <objects name="loading screen">
       <object>objects\obj_loading_bar</object>
       <object>objects\obj_loading_text</object>
+      <object>objects\obj_loading_background</object>
     </objects>
   </objects>
   <rooms name="rooms">
