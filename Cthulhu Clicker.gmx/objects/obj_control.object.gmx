@@ -53,7 +53,7 @@ chest_spawn_max = 660; //11 sec
             <string>///Resolution Management
 
             width = 620;
-            height = 840;
+            height = 800;
 
 //get os and get screen resolution
 switch (os_type)
@@ -153,15 +153,19 @@ ui_arrow_ypos = view_hmiddle + (ui_arrow_height/2);
 ui_arrow_top = ui_arrow_ypos-(ui_arrow_height/2);
 ui_arrow_bottom = ui_arrow_ypos+(ui_arrow_height/2);
 
-// play bg music ---------------
+// play bg music --------------- lachlan
 audio_play_sound(snd_placeholder_music, 10, true);
 audio_sound_gain(snd_placeholder_music, 0.1, 0);
 
 //DPS cycle
 alarm[0] = 1;
 
-//chest spawn timer
+//chest spawn timer - lachlan
 alarm[5] = irandom_range(chest_spawn_min,chest_spawn_max);
+//buff variables
+buff_amount = 0;
+buff_time = 0;
+buff_timer_pass_count = 0;
 
 //font test
 fnt_test = font_add_sprite_ext(spr_fonttest,"0123456789",false,0);
@@ -266,6 +270,55 @@ instance_create(0,0,obj_menu_control);
           <argument>
             <kind>4</kind>
             <string>3</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="6">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///conduct dps buff timing
+//lachlan
+
+//work out if it is the first pass through
+if (buff_timer_pass_count = 0)
+    {
+    //calculate dps buff using passed buff amount and apply it
+    DPS = buff_amount * DPS;
+    
+    //convert buff time to seconds
+    buff_time = buff_time * room_speed;
+    
+    //reset timer for buff piriod
+    alarm[6] = buff_time;
+    
+    //add to pass count
+    buff_timer_pass_count = 1;
+    }
+//this will activate after the buff has been running for its pre determined time
+else
+    {
+    //remove buff
+    DPS = DPS / buff_amount;
+    
+    //stop timer
+    alarm[6] = -1;
+    }
+</string>
           </argument>
         </arguments>
       </action>
