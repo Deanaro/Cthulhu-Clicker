@@ -36,6 +36,7 @@
     <sprites name="Placeholders">
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_ph_newgame</sprite>
+      <sprite>sprites\spr_chest</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
       <sprites name="Loading screen">
         <sprite>sprites\spr_loading</sprite>
@@ -129,6 +130,7 @@
     <objects name="UI">
       <object>objects\obj_popup</object>
       <object>objects\obj_no_dps</object>
+      <object>objects\obj_chest</object>
     </objects>
     <objects name="loading screen">
       <object>objects\obj_loading_bar</object>

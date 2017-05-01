@@ -28,7 +28,8 @@
             <string>///INIT Game Parameters
 drag_distance = 300; //x distance before swipe is considered to be effective
 depth = -10;
-
+chest_spawn_min = 600; //10 sec
+chest_spawn_max = 660; //11 sec
 </string>
           </argument>
         </arguments>
@@ -159,6 +160,9 @@ audio_sound_gain(snd_placeholder_music, 0.1, 0);
 //DPS cycle
 alarm[0] = 1;
 
+//chest spawn timer
+alarm[5] = irandom_range(chest_spawn_min,chest_spawn_max);
+
 //font test
 fnt_test = font_add_sprite_ext(spr_fonttest,"0123456789",false,0);
 draw_set_font(fnt_test);
@@ -262,6 +266,31 @@ instance_create(0,0,obj_menu_control);
           <argument>
             <kind>4</kind>
             <string>3</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="5">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///create chest and reset timer
+instance_create(0,0,obj_chest);
+alarm[5] = irandom_range(chest_spawn_min,chest_spawn_max);
+</string>
           </argument>
         </arguments>
       </action>
