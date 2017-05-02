@@ -56,6 +56,34 @@ else
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///scale the chest
+//lachlan
+//sets the zoom for the chest object
+zoom = round(view_wview/(sprite_get_width(spr_chest) * 10)); 
+
+//apply the scaling to the object
+image_xscale = zoom;
+image_yscale = zoom;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -139,7 +167,7 @@ image_speed = 1
 //stop movement
 speed = 0;
 
-//wait one second then destroy
+//wait one step then destroy so that rest of code can run
 alarm[0] = 30
 </string>
           </argument>
@@ -188,14 +216,49 @@ if (irandom_range(0,10) &lt;= 4)
     obj_control.buff_amount = bonus;
     //reset pass counter
     obj_control.buff_timer_pass_count = 0;
+    
+    //create text to display in pop up
+    buff_text = "you get " +string(bonus * 100) +"% insanity gain 
+    for the next " +string(time)+ " seconds.";
     }
 else
     {
     //determine insanity amount
     insanity_gain = round(obj_control.afflicted * random_range(0.1,0.4));
+    
     //add insanity to players pool
     obj_control.insanity = obj_control.insanity + insanity_gain;
+    
+    //create text to display in pup up
+    buff_text = "you get " +string(insanity_gain) +" insanity!";
     }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///trigger user feedback
+//lachlan
+//display pop up with buff gained
+with instance_create(0,0,obj_popup_text)
+                 {
+                 passed_text = other.buff_text;
+                 }
 </string>
           </argument>
         </arguments>

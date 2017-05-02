@@ -76,9 +76,9 @@ view_hview = screen_height;
 
 /*  Useful Variables */
 zoom = round(view_wview/(sprite_get_width(spr_clicker) * 7)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
-//DELETE create instances in porportion to the view
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
 display_right = view_wview; //the y coordinate of window right side
+//create instances in porportion to the view
 clickerID = instance_create((view_wview/2) - (sprite_get_width(spr_clicker)/2)*zoom,view_hview*3/4 - (sprite_get_height(spr_clicker)/2)*zoom,obj_clicker);//creates the clicker object, 3/4 down and 1/2 across
 
 </string>

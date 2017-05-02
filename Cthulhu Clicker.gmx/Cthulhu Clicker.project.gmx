@@ -129,6 +129,7 @@
     </objects>
     <objects name="UI">
       <object>objects\obj_popup</object>
+      <object>objects\obj_popup_text</object>
       <object>objects\obj_no_dps</object>
       <object>objects\obj_chest</object>
     </objects>
