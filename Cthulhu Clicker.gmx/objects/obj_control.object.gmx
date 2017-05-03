@@ -30,6 +30,7 @@ drag_distance = 300; //x distance before swipe is considered to be effective
 depth = -10;
 chest_spawn_min = 600; //10 sec
 chest_spawn_max = 660; //11 sec
+water_overlay = 0.4; //bettwen 0 and 1, affect overlay tinge
 </string>
           </argument>
         </arguments>
@@ -162,7 +163,8 @@ alarm[0] = 1;
 
 //chest spawn timer - lachlan
 alarm[5] = irandom_range(chest_spawn_min,chest_spawn_max);
-//buff variables
+
+//buff variables -lachlan
 buff_amount = 0;
 buff_time = 0;
 buff_timer_pass_count = 0;
@@ -729,18 +731,22 @@ if(server_responce_code = 200 &amp;&amp; server_datetime &gt; 1492918508)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Cityscape Draw
+            <string>///Cityscape and backgrounds Draw
 /* due to how game maker layers sprites the background must be
 drawn first */
 
 // Draw sky -------------------
 draw_sprite_pos(spr_sky2, 0, 0, 0, view_wview*3, 0, view_wview*3, view_hview/2, 0, view_hview/2, 1);//changed to use new gradient sky, old one can be used with spr_sky - lachlan
 
+// draw water overlay -------- lachlan
+draw_sprite_pos(spr_water, 0, 0, view_hview/2,view_wview, view_hview/2,view_wview,view_hview, 0, view_hview, water_overlay)
+
 /* Cityscape ------------------------
 Draw the cityscape 
 !!! This needs to be moved to it's own script imo, the monsters/city is a big element and will need its own controller - Harry
 !!! moved - Dean */
 draw_sprite_ext( spr_cityscape, 0, 0, view_hview/2, .5, .5, 0, c_white, 1 );
+
 </string>
           </argument>
         </arguments>

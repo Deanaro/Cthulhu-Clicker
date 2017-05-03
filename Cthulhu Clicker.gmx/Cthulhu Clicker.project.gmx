@@ -43,6 +43,7 @@
         <sprite>sprites\spr_loading_icon</sprite>
         <sprite>sprites\spr_loading_background</sprite>
       </sprites>
+      <sprite>sprites\spr_water</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_exit</sprite>

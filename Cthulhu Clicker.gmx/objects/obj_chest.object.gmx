@@ -38,7 +38,7 @@ if (side = 1)
     {
     //spawn left
     x = 0
-    y = (irandom_range(10,view_hview /2)) + view_hview /2;
+    y = (irandom_range(25,(view_hview /2) - (view_hview *0.1))) + view_hview /2;
     //add rightward verlocity
     hspeed = irandom_range(1,3);
     } 
@@ -51,6 +51,8 @@ else
     hspeed = irandom_range(-1,-3);
     }
 
+//set boundry
+boundry_right = view_wview;
 
 </string>
           </argument>
@@ -80,6 +82,9 @@ zoom = round(view_wview/(sprite_get_width(spr_chest) * 10));
 //apply the scaling to the object
 image_xscale = zoom;
 image_yscale = zoom;
+
+//used in trancparancy calculation
+vertical_centre = view_wview / 2;
 </string>
           </argument>
         </arguments>
@@ -127,14 +132,59 @@ instance_destroy();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//check within bounds
+            <string>///check within bounds
 if( x &lt; 0)
     {
     instance_destroy();
     }
-if(x &gt; view_wview)
+if(x &gt; boundry_right)
     {
     instance_destroy();
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///change transparancy based on position
+
+if (x &lt; vertical_centre)
+    {
+    
+    //get % from centre
+    percent = x / vertical_centre
+    
+    //apply to sprite alpha
+    image_alpha = percent; 
+    }
+if (x &gt; vertical_centre)
+    {
+    //get % from centre
+    percent = x / vertical_centre
+    
+    //remove 1 to bring percent below 1
+    percent = percent - 1;
+    
+    //make it opposite
+    percent = 1 - percent;
+    
+    //apply to sprite alpha
+    image_alpha = percent;
     }
 </string>
           </argument>
