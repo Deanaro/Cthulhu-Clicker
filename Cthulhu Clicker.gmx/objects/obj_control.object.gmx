@@ -740,8 +740,8 @@ drawn first */
 // Draw sky -------------------
 draw_sprite_pos(spr_sky2, 0, 0, 0, view_wview*3, 0, view_wview*3, view_hview/2, 0, view_hview/2, 1);//changed to use new gradient sky, old one can be used with spr_sky - lachlan
 
-// draw water overlay -------- lachlan
-draw_sprite_pos(spr_water, 0, 0, view_hview/2,view_wview, view_hview/2,view_wview,view_hview, 0, view_hview, water_overlay)
+// draw water overlay -------- lachlan !! commented out by Dean
+//draw_sprite_pos(spr_water, 0, 0, view_hview/2,view_wview, view_hview/2,view_wview,view_hview, 0, view_hview, water_overlay)
 
 /* Cityscape ------------------------
 Draw the cityscape 
