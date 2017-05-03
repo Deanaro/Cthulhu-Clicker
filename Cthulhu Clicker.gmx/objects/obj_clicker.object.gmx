@@ -25,10 +25,11 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>image_speed = 0;
+            <string>depth = 10
+image_speed = 0.05;
 image_xscale = obj_control.zoom;
 image_yscale = obj_control.zoom;
-
+ocean_image_index = 0;
 // set humm variables ------------------
 vol = 0;
 tap = false;
@@ -39,6 +40,11 @@ audio_sound_gain(snd_tap_off, 0.02, 0);
 
 // begin running humm sound ------------
 audio_play_sound(snd_hum_placeholder, 5, true);
+
+//define colors
+c_ocean = make_color_rgb(45,131,152);
+c_ocean_overlay_top = make_color_rgb(154,179,199);
+c_ocean_overlay_bottom = make_color_rgb(48,34,60);
 
 
 </string>
@@ -183,6 +189,46 @@ audio_play_sound(snd_tap_on,1,0)
 // add to humm loudness -------------
 vol = vol + 0.05;
 
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///draw ocean
+
+draw_set_color(c_ocean);
+draw_rectangle(0,obj_control.display_center,view_wview*(obj_control.index_maxView+1),view_hview,0)
+
+var temp1 = ceil((view_wview*(obj_control.index_maxView+1))/(32*obj_control.zoom));
+var temp2 = ceil((view_hview)/(32*obj_control.zoom));
+ocean_image_index += 0.1;
+draw_self();
+for(var i = 0; i&lt;=temp1; i++)
+{
+    for(var i2 = 0; i2&lt;=temp2; i2++)
+    {
+        draw_sprite_ext(spr_ocean_texture,ocean_image_index,i*32*obj_control.zoom,i2*32*obj_control.zoom,obj_control.zoom,obj_control.zoom,0,c_white,0.5);
+    }
+
+}
+draw_sprite_ext(spr_ocean,0,0,obj_control.display_center,(view_wview*(obj_control.index_maxView+1))/sprite_get_width(spr_ocean),(view_hview-obj_control.display_center)/sprite_get_height(spr_ocean),0,c_white,1);
 </string>
           </argument>
         </arguments>

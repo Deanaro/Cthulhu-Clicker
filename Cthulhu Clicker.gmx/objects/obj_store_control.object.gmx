@@ -57,6 +57,8 @@ scroll_section_frame[i] = irandom(5);
             <kind>1</kind>
             <string>///create item list
 //~DC
+//create multiplier item
+instance_create(x,y,obj_purchasemultiplier)
 //scroll SETUP-------------------------------------------------
 image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);

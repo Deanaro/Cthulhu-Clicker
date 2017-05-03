@@ -49,6 +49,10 @@
       <sprite>sprites\spr_exit</sprite>
       <sprite>sprites\spr_arrow</sprite>
       <sprite>sprites\spr_dot</sprite>
+      <sprites name="Ocean">
+        <sprite>sprites\spr_ocean</sprite>
+        <sprite>sprites\spr_ocean_texture</sprite>
+      </sprites>
     </sprites>
     <sprites name="Unused">
       <sprite>sprites\spr_cityscape_event</sprite>
@@ -70,10 +74,12 @@
         <sprite>sprites\spr_scroll_bot</sprite>
         <sprite>sprites\spr_scroll_section</sprite>
       </sprites>
+      <sprite>sprites\spr_purchasemultiplier</sprite>
       <sprite>sprites\spr_upgrade_button</sprite>
     </sprites>
     <sprites name="Clicker">
       <sprite>sprites\spr_clicker</sprite>
+      <sprite>sprites\spr_clicker2</sprite>
     </sprites>
     <sprites name="CityScape">
       <sprite>sprites\spr_cityscape</sprite>
@@ -124,6 +130,7 @@
     <objects name="Store Objects">
       <object>objects\obj_item</object>
       <object>objects\obj_upgrade_button</object>
+      <object>objects\obj_purchasemultiplier</object>
     </objects>
     <objects name="Menu Objects">
       <object>objects\obj_menu_reset</object>

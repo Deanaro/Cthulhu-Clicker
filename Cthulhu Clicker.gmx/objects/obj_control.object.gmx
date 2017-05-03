@@ -76,7 +76,7 @@ view_wview = screen_width;  //resizes the view to the resolution
 view_hview = screen_height;
 
 /*  Useful Variables */
-zoom = round(view_wview/(sprite_get_width(spr_clicker) * 7)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
+zoom = round(view_wview/(32 * 7)); //sets the zoom factor so that the button fits roughly 4 times in the room's width.
 display_center = view_hview/2; //the y coordinate at which the botton of the city image starts
 display_right = view_wview; //the y coordinate of window right side
 //create instances in porportion to the view
@@ -609,7 +609,8 @@ if os_is_paused()
             <string>///Check for UI Interaction
 if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through store
 {
-    //Check UI Arrows
+/*
+        //Check UI Arrows
     //Check inside verticle bounds
     if (mouse_y &gt; (ui_arrow_top) &amp;&amp; mouse_y &lt; (ui_arrow_bottom)) {
         //Check leftmost arrow
@@ -623,6 +624,7 @@ if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through st
             scr_view_instant_right();
         }   
     }
+*/
 }
 
 //Check for swipe
