@@ -99,6 +99,40 @@ if (file_exists(working_directory + "save.ini"))
          
    }
    
+//load statistics array - lachlan
+r = 0;
+t = 0;
+position = 0;
+max_position = ini_read_real('stats_array', 'positon_max', 'error');
+//every second entry is a string this is used to keep track of if data will be string or not
+string_read = 1;
+//loop array
+while (position <= max_position)
+    {
+    while (t <= 1)
+        {
+        //check if data is string
+        if (string_read = 1)
+            {
+            obj_control.stats_array[r,t] = ini_read_string('stats_array', 'positon' + string(position), 'error');
+            strng_read = 0;
+            }
+        else
+            {
+            obj_control.stats_array[r,t] = ini_read_real('stats_array', 'positon' + string(position), 'error');
+            strng_read = 1;
+            }
+            //add 1 to position
+            position = position + 1;
+            //increase t
+            t = t + 1;
+            
+        }
+    //increase r
+    r = r + 1;
+    //reset t
+    t = 0;
+    }
    
    
    

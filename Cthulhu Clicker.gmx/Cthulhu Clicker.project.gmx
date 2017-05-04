@@ -115,6 +115,9 @@
         <script>scripts\scr_part_Clicker.gml</script>
       </scripts>
     </scripts>
+    <scripts name="Statistics">
+      <script>scripts\scr_create_stats_array.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_defualt</font>

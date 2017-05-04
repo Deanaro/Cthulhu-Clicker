@@ -42,6 +42,37 @@ ini_write_real('time', 'local', date_current_datetime());
 //save the current server time
 ini_write_real('time', 'server time', global.server_datetime);
 
+//save statistics array - lachlan
+r = 0;
+t = 0;
+position = 0;
+//loop array
+while (r <= array_height_2d(stats_array) - 1)
+    {
+    while (t <= array_length_2d(stats_array, 0) - 1)
+        {
+        //check if data is string
+        if (is_string(stats_array[r,t]))
+            {
+            ini_write_string('stats_array', 'positon' + string(position), stats_array[r,t]);
+            }
+        else
+            {
+            ini_write_real('stats_array', 'positon' + string(position), stats_array[r,t]);
+            }
+            //add 1 to position
+            position = position + 1;
+            //increase t
+            t = t + 1;
+            
+        }
+    //increase r
+    r = r + 1;
+    //reset t
+    t = 0;
+    }
+//save position to make load easyer to handle
+ini_write_real('stats_array', 'positon_max', position);
 
 //close ini completing save
 ini_close();
