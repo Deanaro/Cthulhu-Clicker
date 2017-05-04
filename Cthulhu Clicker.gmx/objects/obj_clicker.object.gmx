@@ -186,9 +186,12 @@ scr_part_Clicker(); //Emit Click Particle Effect
 
 audio_sound_pitch(snd_tap_on, 0.5 + random(1));
 audio_play_sound(snd_tap_on,1,0)
-// add to humm loudness -------------
+// add to humm loudness ------------- lachlan
 vol = vol + 0.05;
 
+// add to total click count - lachlan
+current_total = real(obj_control.stats_array[3,1]);
+obj_control.stats_array[3,1] = current_total  + 1;
 </string>
           </argument>
         </arguments>

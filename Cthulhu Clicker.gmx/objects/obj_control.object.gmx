@@ -178,6 +178,9 @@ global.font_size = ceil(zoom/4)
 //create statistics array - lachlan
 scr_create_stats_array();
 
+//create global variable for tracking hightest dps achived
+global.highest_dps = 0;
+
 </string>
           </argument>
         </arguments>

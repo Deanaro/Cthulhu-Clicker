@@ -120,6 +120,7 @@ while (position <= max_position)
         else
             {
             obj_control.stats_array[r,t] = ini_read_real('stats_array', 'positon' + string(position), 'error');
+            obj_control.stats_array[r,t] = real(obj_control.stats_array[r,t]);
             strng_read = 1;
             }
             //add 1 to position
@@ -138,4 +139,8 @@ while (position <= max_position)
    
    //close save file
    ini_close();
+   
+   //load highest dps into global - lachlan
+   global.highest_dps = real(obj_control.stats_array[5,1]);
+   
 }
