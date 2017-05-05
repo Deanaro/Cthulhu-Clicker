@@ -143,4 +143,8 @@ while (position <= max_position)
    //load highest dps into global - lachlan
    global.highest_dps = real(obj_control.stats_array[5,1]);
    
+   //update local time, used to track active playtime - lachlan
+   date_set_timezone(timezone_utc);
+   local_time = date_current_datetime();
+   
 }

@@ -114,7 +114,7 @@ scr_part_system_init(x+(sprite_width/2), y+(sprite_height/2)-25);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>// this code runs every step
+            <string>/// adjust sound volumes
 
 // adjust vol variable -----------
 if vol &gt; 0 
@@ -182,6 +182,9 @@ obj_control.population -=obj_control.click_damage;
 obj_control.afflicted +=obj_control.click_damage;
 image_index =1;
 
+//add damage to stats array - lachlan
+obj_control.stats_array[1,1] = real(obj_control.stats_array[1,1]) + obj_control.click_damage;
+obj_control.stats_array[0,1] = real(obj_control.stats_array[0,1]) + obj_control.click_damage;
 scr_part_Clicker(); //Emit Click Particle Effect
 
 audio_sound_pitch(snd_tap_on, 0.5 + random(1));

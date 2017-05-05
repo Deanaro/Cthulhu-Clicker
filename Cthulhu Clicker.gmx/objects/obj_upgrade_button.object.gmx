@@ -112,6 +112,8 @@ if mouse_y &gt; obj_control.display_center
         obj_control.insanity -= obj_store_control.item_price[parent]; //deduce insanity
         obj_store_control.store[# 2, parent] += obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]; //increase level
         
+        obj_control.stats_array[9,1] = real(obj_control.stats_array[9,1]) + real(obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]);
+        
         //checks if item is owned and change image_blend to c_white if it is
         if obj_store_control.store[# 2,parent] = 0
             {

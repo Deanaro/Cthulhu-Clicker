@@ -42,13 +42,15 @@ ini_write_real('time', 'local', date_current_datetime());
 //save the current server time
 ini_write_real('time', 'server time', global.server_datetime);
 
-//check if current dps is higher then highest dps before
+//check if current dps is higher then highest dps before - lachlan
 
 if (obj_control.DPS > global.highest_dps)
     {
     obj_control.stats_array[5,1] = obj_control.DPS;
     }
 
+//calculate active play time -lachlan
+stats_array[8,1] = real(stats_array[8,1]) + date_second_span(local_time, date_current_datetime());
 
 //save statistics array - lachlan
 r = 0;
@@ -80,7 +82,7 @@ while (r <= array_height_2d(stats_array) - 1)
     t = 0;
     }
 //save position to make load easyer to handle
-ini_write_real('stats_array', 'positon_max', position - 1);
+ini_write_real('stats_array', 'positon_max', (array_height_2d(stats_array) * 2) - 1);
 
 //close ini completing save
 ini_close();
