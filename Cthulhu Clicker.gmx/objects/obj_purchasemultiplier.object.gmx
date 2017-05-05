@@ -87,6 +87,7 @@ multiplier[3] = 100;
 else
 {M_index ++;}
 scr_item_update();
+
 </string>
           </argument>
         </arguments>

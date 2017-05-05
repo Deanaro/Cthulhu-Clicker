@@ -27,6 +27,7 @@
             <kind>1</kind>
             <string>///spawn object and set velocity
 //Lachlan
+clicked = 0;
 
 // stop animation
 image_speed = 0;
@@ -211,6 +212,8 @@ if (x &gt; vertical_centre)
             <string>///chest tapped
 //lachlan
 
+if (clicked = 0) {
+
 //play animation
 image_speed = 1
 
@@ -219,6 +222,9 @@ speed = 0;
 
 //wait one step then destroy so that rest of code can run
 alarm[0] = 30
+
+clicked = 1;
+}
 </string>
           </argument>
         </arguments>
@@ -242,6 +248,7 @@ alarm[0] = 30
             <string>///choose buff
 //lachlan
 //choose is buff is insanity or timed buff
+if (clicked = 1) {
 if (irandom_range(0,10) &lt;= 4)
     {
     //determine timed buff
@@ -282,6 +289,9 @@ else
     //create text to display in pup up
     buff_text = "you get " +string(insanity_gain) +" insanity!";
     }
+    
+    clicked = 2;
+}
 </string>
           </argument>
         </arguments>
@@ -305,10 +315,14 @@ else
             <string>///trigger user feedback
 //lachlan
 //display pop up with buff gained
+
+if (clicked = 2) {
 with instance_create(0,0,obj_popup_text)
                  {
                  passed_text = other.buff_text;
                  }
+                 clicked = 3;
+}
 </string>
           </argument>
         </arguments>

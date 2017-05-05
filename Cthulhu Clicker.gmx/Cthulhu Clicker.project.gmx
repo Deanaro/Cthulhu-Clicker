@@ -96,6 +96,8 @@
       <script>scripts\scr_item_list.gml</script>
       <script>scripts\scr_item_add.gml</script>
       <script>scripts\scr_item_update.gml</script>
+      <script>scripts\scr_calc_price.gml</script>
+      <script>scripts\scr_calc_dps.gml</script>
     </scripts>
     <scripts name="View">
       <script>scripts\scr_viewupdate.gml</script>
@@ -118,9 +120,14 @@
     <scripts name="Statistics">
       <script>scripts\scr_create_stats_array.gml</script>
     </scripts>
+    <scripts name="Basic Functions">
+      <script>scripts\func_decimal.gml</script>
+      <script>scripts\func_TEST.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
-    <font>fonts\fnt_defualt</font>
+    <font>fonts\fnt_default</font>
+    <font>fonts\fnt_arial</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_clicker</object>

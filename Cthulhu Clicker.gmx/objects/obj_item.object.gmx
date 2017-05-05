@@ -86,9 +86,9 @@ draw_sprite_ext(spr_scroll_section,0,2*view_wview - 12*obj_control.zoom, y - 8*o
 //draw icon --------------------------------------
 draw_self();
 //draw_ values -----------------------------------
-draw_set_font(fnt_defualt); draw_set_color(c_black);
+draw_set_font(fnt_default); draw_set_color(c_black);
 /*name  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (2)*obj_control.zoom, string(obj_store_control.store[# 0,parent]), global.font_size,global.font_size,0);
-draw_set_font(obj_control.fnt_test); draw_set_color(c_white);
+draw_set_font(obj_control.fnt_main); draw_set_color(c_white);
 /*level */draw_text_transformed(/*x*/x + 1  ,/*y*/  y  +1, string(obj_store_control.store[# 2,parent]), global.font_size,global.font_size,0);
 if obj_store_control.store[# 1, parent] != 0
 {/*DPS  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (10)*obj_control.zoom, "DPS: " + string(obj_store_control.item_DPS[parent]), global.font_size,global.font_size,0);}
