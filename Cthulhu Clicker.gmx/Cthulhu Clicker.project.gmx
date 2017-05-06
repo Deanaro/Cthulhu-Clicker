@@ -124,6 +124,9 @@
       <script>scripts\func_decimal.gml</script>
       <script>scripts\func_TEST.gml</script>
     </scripts>
+    <scripts name="buffs/pickups">
+      <script>scripts\scr_buff_dps_recalc.gml</script>
+    </scripts>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_default</font>

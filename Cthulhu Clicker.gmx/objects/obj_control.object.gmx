@@ -344,6 +344,7 @@ else
     
     //stop timer
     alarm[6] = -1;
+    
     }
 </string>
           </argument>
