@@ -128,6 +128,7 @@ index_minView = -1; //The lowest numbered View
 index_maxView = 2; //The highest numbered View
 
 /* View index numbers */
+stats_view = 2;
 shop_view = 1;
 menu_view = -1;
 
@@ -224,6 +225,8 @@ global.highest_dps = 0;
 //create store control object
 instance_create(view_wview,y+view_hview/2,obj_store_control);
 instance_create(0,0,obj_menu_control);
+instance_create(view_wview * 2,y+view_hview/2,obj_stats_control);
+
 </string>
           </argument>
         </arguments>

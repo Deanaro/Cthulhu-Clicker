@@ -137,6 +137,7 @@
     <objects name="Control Objects">
       <object>objects\obj_control</object>
       <object>objects\obj_store_control</object>
+      <object>objects\obj_stats_control</object>
       <object>objects\obj_menu_control</object>
       <object>objects\obj_loading_control</object>
     </objects>
@@ -158,6 +159,9 @@
       <object>objects\obj_loading_bar</object>
       <object>objects\obj_loading_text</object>
       <object>objects\obj_loading_background</object>
+    </objects>
+    <objects name="Stats Objects">
+      <object>objects\obj_stats_display</object>
     </objects>
   </objects>
   <rooms name="rooms">

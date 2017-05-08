@@ -49,16 +49,15 @@ scroll_section_frame[i] = irandom(5);
         <exetype>2</exetype>
         <functionname></functionname>
         <codestring></codestring>
-        <whoName>other</whoName>
+        <whoName>self</whoName>
         <relative>0</relative>
         <isnot>0</isnot>
         <arguments>
           <argument>
             <kind>1</kind>
             <string>///create item list
-//~DC
-//create multiplier item
-instance_create(x,y,obj_purchasemultiplier)
+//~DC -lachlan edited for stats screen
+
 //scroll SETUP-------------------------------------------------
 image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);
@@ -66,44 +65,20 @@ store_scroll = 0;
 drag = 0;
 dragoverwrite = 0;
 //--------------------------------------------------------------
-
-scr_item_list(); //initilise item list
-scr_load(); //check is save exists if so load it
-
-//create item instnaces ----------------------------------------
-//create icon --------------------------------------------------
-for(var i=0; i &lt; ds_grid_height(store); i++)
+//read from array and make stats items - lachlan
+i = 0;
+while( i &lt; array_height_2d(obj_control.stats_array))
 {
-item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (2+32*i)*obj_control.zoom,obj_item) 
-    with item
-    {
-    sprite_index = obj_store_control.store[# 1,i];
-    parent = i;
-    image_xscale = obj_control.zoom;
-    image_yscale = obj_control.zoom;       
-        if obj_store_control.store[# 2,parent] = 0
-            {
-                image_blend = c_dkgray;
-            }
-        else
-            {
-                image_blend = c_white;
-            }
-    }
-//create button --------------------------------------------------
-with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display_center + scroll_corner_height + (5+32*i)*obj_control.zoom,obj_upgrade_button) 
-    {
-    item = other.item
-    image_xscale = obj_control.zoom;
-    image_yscale = obj_control.zoom;
-    parent = i;
-    }
+    with (instance_create(x, y, obj_stats_display))
+     {
+     array_row = i;
+     }
+     i = i + 1;
 }
 //-----------------------------------------------------------------
-//updates price and DPs
-scr_item_update(); 
+
 //saves the store height into a variable
-scroll_height = -ds_grid_height(store)*32*obj_control.zoom + obj_control.display_center - 2*scroll_corner_height + 8*obj_control.zoom;
+scroll_height = 50;
 </string>
           </argument>
         </arguments>
@@ -152,8 +127,8 @@ dragoverwrite = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///store scrolling
-//~DC
+            <string>///stats scrolling
+//~DC -lachlan edited for stats screen
 if drag = 1 //checks if mouse is being dragged
 {
 //displaces the store items by the change of mouse_y from the y coordinate where the moust was clicked
@@ -212,8 +187,7 @@ alarm[0] = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///initiate scrolling
-//~DC
+            <string>//~DC
 alarm[0] = 10; //after this alarm activates, dragoverwrite is set to 1, meaning buttons wont work anymore
 drag = 1;
 dragy = mouse_y;
@@ -244,15 +218,15 @@ dragy = mouse_y;
 //rolls -------------------------------------
 for(var i = 0; i&lt; scroll_section_length; i++)
 {
-    draw_sprite_ext(spr_scroll_top,scroll_section_frame[i],view_wview+scroll_corner_width+(16*i*obj_control.zoom),obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
-    draw_sprite_ext(spr_scroll_bot,scroll_section_frame[i],view_wview+scroll_corner_width+(16*i*obj_control.zoom),view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
+    draw_sprite_ext(spr_scroll_top,scroll_section_frame[i],x+scroll_corner_width+(16*i*obj_control.zoom),obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
+    draw_sprite_ext(spr_scroll_bot,scroll_section_frame[i],x+scroll_corner_width+(16*i*obj_control.zoom),view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
 }
 
 //corners -----------------------------------
-draw_sprite_ext(spr_scroll_Ltop,0,view_wview,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
-draw_sprite_ext(spr_scroll_Lbot,0,view_wview,view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
-draw_sprite_ext(spr_scroll_Rtop,0,2*view_wview-scroll_corner_width,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
-draw_sprite_ext(spr_scroll_Rbot,0,2*view_wview-scroll_corner_width,view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
+draw_sprite_ext(spr_scroll_Ltop,0,x,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
+draw_sprite_ext(spr_scroll_Lbot,0,x,view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
+draw_sprite_ext(spr_scroll_Rtop,0,x+view_wview-scroll_corner_width,obj_control.display_center,obj_control.zoom,obj_control.zoom,0,c_white,1);
+draw_sprite_ext(spr_scroll_Rbot,0,x+view_wview-scroll_corner_width,view_hview - scroll_corner_height,obj_control.zoom,obj_control.zoom,0,c_white,1);
 </string>
           </argument>
         </arguments>
