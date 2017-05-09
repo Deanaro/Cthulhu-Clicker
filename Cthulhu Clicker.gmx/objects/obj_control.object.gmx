@@ -126,7 +126,9 @@ global.DPS = 0;
 viewnum = 0;
 index_minView = -1; //The lowest numbered View
 index_maxView = 2; //The highest numbered View
-
+ui_swipe_start = 0;
+ui_click_start = 0;
+ui_swipe_snap = 0;
 /* View index numbers */
 stats_view = 2;
 shop_view = 1;
@@ -645,7 +647,33 @@ if os_is_paused()
     alarm [4] = 1
     scr_save();
     }
+
     
+//view swipe functionality
+if ui_swipe_start = 1   //if the view is being swiped, offset view to match the mouse offset
+    {
+        mouse_previous = temp_mouse_pos;
+        temp_mouse_pos = mouse_x;
+        change_in_x = ceil((mouse_x - view_xview)- mouse_view_x);
+        view_xview = ui_view_pos - change_in_x;
+    }
+else if ui_swipe_snap = 1   //when mouse is swipe ends, snaps to the closest view
+    {
+        if view_xview/view_wview - floor(view_xview/view_wview) &gt;= 0.5
+        {closest_view_dir = 1;}
+        else 
+        {closest_view_dir = -1;}
+        closest_view = round(view_xview / view_wview)*view_wview
+        
+        if abs(round(swipe_momentom)) &gt;= abs(closest_view-view_xview)
+        {ui_swipe_snap=0;
+        view_xview = closest_view;}
+        else
+        {
+        swipe_momentom += closest_view_dir;
+        view_xview += round(swipe_momentom)*2;
+        }
+    }
 </string>
           </argument>
         </arguments>
@@ -669,28 +697,10 @@ if os_is_paused()
           <argument>
             <kind>1</kind>
             <string>///Check for UI Interaction
-if (obj_store_control.dragoverwrite = 0) //if not currently scrolling through store
-{
-/*
-        //Check UI Arrows
-    //Check inside verticle bounds
-    if (mouse_y &gt; (ui_arrow_top) &amp;&amp; mouse_y &lt; (ui_arrow_bottom)) {
-        //Check leftmost arrow
-        if (mouse_x &gt; (view_xview + ui_arrow_left_xpos) &amp;&amp; mouse_x &lt; (view_xview + ui_arrow_left_xpos + ui_arrow_width))
-        {
-            scr_view_instant_left();
-        }
-        //Check Rightmost arrow
-        else if (mouse_x &gt; (view_xview + ui_arrow_right_xpos) &amp;&amp; mouse_x &lt; (view_xview + ui_arrow_right_xpos + ui_arrow_width))
-        {
-            scr_view_instant_right();
-        }   
-    }
-*/
-}
+
 
 //Check for swipe
-if (ui_swipe_start) {
+/*if (ui_swipe_start) {
     var tmp_swipe = mouse_x - ui_click_start;
     if (abs(tmp_swipe) &gt; drag_distance) {
         if (sign(tmp_swipe) = -1) {
@@ -701,7 +711,13 @@ if (ui_swipe_start) {
     }
     ui_click_start = 0;
 }
-ui_swipe_start = false;
+ui_swipe_start = false;*/
+if (ui_swipe_start)
+    {
+        swipe_momentom = (mouse_x - mouse_previous);
+        ui_swipe_snap = true;
+        ui_swipe_start = false;
+    }
 </string>
           </argument>
         </arguments>
@@ -726,8 +742,11 @@ ui_swipe_start = false;
             <kind>1</kind>
             <string>///Start Swipe Checking
 ui_click_start = mouse_x;
+ui_view_pos = view_xview;
+temp_mouse_pos = mouse_x; //used to calculate previous mouse position
 ui_swipe_start = true;
-
+mouse_view_x = mouse_x - view_xview;
+ui_swipe_snap = 0; 
 </string>
           </argument>
         </arguments>

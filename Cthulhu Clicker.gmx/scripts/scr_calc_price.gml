@@ -11,7 +11,7 @@ var item_base_cost = obj_store_control.store[# 3, target_item];
 var target_level = obj_store_control.store[# 2, target_item];
 
 if (argument_count > 1) {
-    target_level = argument[1];
+    target_level += argument[1];
 }
 
 // Initial Cost * (Global_Cost_Increase_Rate ^ Item_Level)
