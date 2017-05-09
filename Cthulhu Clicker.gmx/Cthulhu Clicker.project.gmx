@@ -28,6 +28,9 @@
     <sound>sound\snd_tap_on</sound>
     <sound>sound\snd_tap_off</sound>
     <sound>sound\snd_placeholder_music</sound>
+    <sound>sound\snd_tap</sound>
+    <sound>sound\snd_splat</sound>
+    <sound>sound\bgm_trololololol</sound>
   </sounds>
   <sprites name="sprites">
     <sprites name="font">
@@ -86,6 +89,14 @@
       <sprite>sprites\spr_sky</sprite>
       <sprite>sprites\spr_sky2</sprite>
     </sprites>
+    <sprites name="HUD">
+      <sprite>sprites\spr_HUD_bar_green</sprite>
+      <sprite>sprites\spr_HUD_base</sprite>
+      <sprite>sprites\spr_HUD_bar_blue</sprite>
+      <sprite>sprites\spr_HUD_indicator</sprite>
+      <sprite>sprites\spr_HUD_icons</sprite>
+    </sprites>
+    <sprite>sprites\spr_TROLOLOL</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -131,6 +142,9 @@
   <fonts name="fonts">
     <font>fonts\fnt_default</font>
     <font>fonts\fnt_arial</font>
+    <font>fonts\fnt_freedom</font>
+    <font>fonts\fnt_heroes</font>
+    <font>fonts\fnt_heroes_large</font>
   </fonts>
   <objects name="objects">
     <object>objects\obj_clicker</object>
@@ -163,6 +177,8 @@
     <objects name="Stats Objects">
       <object>objects\obj_stats_display</object>
     </objects>
+    <object>objects\obj_HUD</object>
+    <object>objects\obj_HUD_icon</object>
   </objects>
   <rooms name="rooms">
     <room>rooms\rm_loading</room>

@@ -111,6 +111,8 @@ scr_item_update();
           <argument>
             <kind>1</kind>
             <string>image_index = 1;
+audio_sound_pitch(snd_tap, 0.5 + random(1));
+audio_play_sound(snd_tap,1,0)
 </string>
           </argument>
         </arguments>
@@ -134,7 +136,8 @@ scr_item_update();
           <argument>
             <kind>1</kind>
             <string>draw_self();
-draw_text(x+20,y+10 + image_index,"X "+ string(multiplier[M_index]));
+draw_set_color(obj_control.c_font);
+draw_text(x+3*obj_control.zoom,y+(2+ image_index)*obj_control.zoom,"X "+ string(multiplier[M_index]));
 </string>
           </argument>
         </arguments>

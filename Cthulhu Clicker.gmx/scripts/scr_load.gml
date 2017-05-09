@@ -81,7 +81,7 @@ if (file_exists(working_directory + "save.ini"))
                  
              }
    }
-   //pop up to explin no dps due to internet disconnection
+   //pop up to explain no dps due to internet disconnection
    else
    {
          obj_control.population = population;

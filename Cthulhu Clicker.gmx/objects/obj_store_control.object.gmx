@@ -58,7 +58,7 @@ scroll_section_frame[i] = irandom(5);
             <string>///create item list
 //~DC
 //create multiplier item
-instance_create(x,y,obj_purchasemultiplier)
+instance_create(x+20*obj_control.zoom,y+2*obj_control.zoom,obj_purchasemultiplier)
 //scroll SETUP-------------------------------------------------
 image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);
@@ -76,9 +76,11 @@ for(var i=0; i &lt; ds_grid_height(store); i++)
 {
 item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (2+32*i)*obj_control.zoom,obj_item) 
     with item
-    {
+    { 
     sprite_index = obj_store_control.store[# 1,i];
     parent = i;
+    if obj_store_control.store[# 5,parent] = 0 {type_string = "DPS"}
+    else {type_string = "Click Damage"}
     image_xscale = obj_control.zoom;
     image_yscale = obj_control.zoom;       
         if obj_store_control.store[# 2,parent] = 0

@@ -2,6 +2,7 @@
 //~DC
 var total_cost = 0;
 obj_control.DPS = 0;
+obj_control.click_damage =1;
 for(var item_num =0;item_num < ds_grid_height(obj_store_control.store);item_num++)
 {
     //    price
@@ -15,6 +16,13 @@ for(var item_num =0;item_num < ds_grid_height(obj_store_control.store);item_num+
     //    DPS
     obj_store_control.item_DPS[item_num] = scr_calc_dps(item_num);
     
+    if obj_store_control.store[# 5,item_num] = 0 //if type = dps
+    {
     obj_control.DPS += obj_store_control.item_DPS[item_num];
+    }
+    else //if type = click
+    {
+        obj_control.click_damage += obj_store_control.item_DPS[item_num];
+    }
 }
 
