@@ -134,7 +134,7 @@ stats_view = 2;
 shop_view = 1;
 menu_view = -1;
 
-scr_viewupdate();
+//scr_viewupdate();
 
 //Draw Variables
 bOffset = 10; //border offset for draw position calculations
@@ -159,15 +159,6 @@ view_count = abs(index_minView) + abs(index_maxView) + 1; //add together negativ
 dot_plus_offset_width = sprite_get_width(spr_dot) + bOffset;
 all_dots_width = (view_count*dot_plus_offset_width-bOffset);
 dots_pos_start = (view_wview-all_dots_width)/2;
-
-//Arrows [to remove]
-ui_arrow_width = sprite_get_width(spr_arrow);
-ui_arrow_height = sprite_get_height(spr_arrow);
-ui_arrow_right_xpos = view_wview - ui_arrow_width - bOffset;
-ui_arrow_left_xpos = bOffset;
-ui_arrow_ypos = view_hmiddle + (ui_arrow_height/2);
-ui_arrow_top = ui_arrow_ypos-(ui_arrow_height/2);
-ui_arrow_bottom = ui_arrow_ypos+(ui_arrow_height/2);
 
 // play bg music --------------- lachlan
 audio_play_sound(snd_placeholder_music, 10, true);
@@ -656,6 +647,7 @@ if ui_swipe_start = 1   //if the view is being swiped, offset view to match the 
         temp_mouse_pos = mouse_x;
         change_in_x = ceil((mouse_x - view_xview)- mouse_view_x);
         view_xview = ui_view_pos - change_in_x;
+        x = view_xview;
     }
 else if ui_swipe_snap = 1   //when mouse is swipe ends, snaps to the closest view
     {
@@ -663,16 +655,22 @@ else if ui_swipe_snap = 1   //when mouse is swipe ends, snaps to the closest vie
         {closest_view_dir = 1;}
         else 
         {closest_view_dir = -1;}
-        closest_view = round(view_xview / view_wview)*view_wview
+        closest_view = round(view_xview / view_wview)
         
-        if abs(round(swipe_momentom)) &gt;= abs(closest_view-view_xview)
-        {ui_swipe_snap=0;
-        view_xview = closest_view;}
+        if closest_view &lt; index_minView {closest_view = index_minView; closest_view_dir = 1; if swipe_momentom &lt; 0 {swipe_momentom = 0;}}
+        else if closest_view &gt; index_maxView {closest_view = index_maxView; closest_view_dir = -1;if swipe_momentom &gt; 0 {swipe_momentom = 0;}}
+        
+        if abs(round(swipe_momentom)) &gt;= abs(closest_view*view_wview-view_xview)
+            {
+            ui_swipe_snap=0;
+            view_xview = closest_view*view_wview;
+            }
         else
-        {
-        swipe_momentom += closest_view_dir;
-        view_xview += round(swipe_momentom)*2;
-        }
+            {
+            swipe_momentom += closest_view_dir;
+            view_xview += round(swipe_momentom)*2;
+            }
+        x = view_xview;
     }
 </string>
           </argument>
@@ -865,17 +863,17 @@ viewoffset = view_wview * viewnum;
 /*Economy ------------------------ 
 Draw the economy HUD at the top of the screen*/
 ui_entityWidth = string_width(ui_insanity) *global.font_size;
-draw_text_transformed(bOffset + viewoffset, bOffset,ui_insanity,global.font_size,global.font_size,0);
+draw_text_transformed(bOffset + x, bOffset,ui_insanity,global.font_size,global.font_size,0);
 
 ui_entityHeight = string_height_ext(ui_insanity, tOffset, -1)*global.font_size + zoom; //Get string width of population entity to properly accurately y position
-draw_text_transformed(bOffset + viewoffset, bOffset + ui_entityHeight, ui_dps,global.font_size,global.font_size,0);
+draw_text_transformed(bOffset + x, bOffset + ui_entityHeight, ui_dps,global.font_size,global.font_size,0);
 
 ui_entityWidth = string_width(ui_population) *global.font_size; //Get string width in order to accurately x position
-draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset,bOffset, ui_population,global.font_size,global.font_size,0); //draw the population value
+draw_text_transformed(display_right - bOffset - ui_entityWidth + x,bOffset, ui_population,global.font_size,global.font_size,0); //draw the population value
 
 ui_entityWidth = string_width(ui_afflicted) *global.font_size; //Get string width in order to accurately x position
 ui_entityHeight = string_height_ext(ui_population, tOffset, -1) *global.font_size + zoom; //Get string width of population entity to properly accurately y position
-draw_text_transformed(display_right - bOffset - ui_entityWidth + viewoffset, bOffset + ui_entityHeight, ui_afflicted,global.font_size,global.font_size,0); //draw the afflicted value
+draw_text_transformed(display_right - bOffset - ui_entityWidth + x, bOffset + ui_entityHeight, ui_afflicted,global.font_size,global.font_size,0); //draw the afflicted value
 
 
 /* View Move Arrows ------------------------ 
