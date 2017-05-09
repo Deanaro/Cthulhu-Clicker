@@ -69,16 +69,17 @@ dragoverwrite = 0;
 i = 0;
 while( i &lt; array_height_2d(obj_control.stats_array))
 {
-    with (instance_create(x, y, obj_stats_display))
+    with (instance_create(x + scroll_corner_width - 8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (25*i)*obj_control.zoom,obj_stats_display))
      {
      array_row = i;
      }
      i = i + 1;
+     
 }
 //-----------------------------------------------------------------
 
 //saves the store height into a variable
-scroll_height = 50;
+scroll_height = -array_height_2d(obj_control.stats_array) * 100;
 </string>
           </argument>
         </arguments>

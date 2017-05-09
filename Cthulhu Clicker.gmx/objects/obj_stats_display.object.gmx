@@ -26,8 +26,8 @@
           <argument>
             <kind>1</kind>
             <string>//init variables
-x = obj_stats_control.x
-y = obj_stats_control.y
+
+
 depth = obj_stats_control.depth + 2;
 data = 0;
 title = "loading"
@@ -111,6 +111,30 @@ data = obj_control.stats_array[array_row,1];
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///store scrolling displacement
+y = ystart + obj_stats_control.store_scroll;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -135,11 +159,11 @@ draw_sprite_ext(spr_scroll_section,0,2 * view_wview + 12*obj_control.zoom, y - 8
 draw_sprite_ext(spr_scroll_section,0,3 * view_wview - 12*obj_control.zoom, y - 8*obj_control.zoom,-obj_control.zoom,obj_control.zoom,0,c_white,1);
 //draw text
 draw_set_font(obj_control.fnt_main); draw_set_color(c_white);
-draw_text(x + view_wview * 0.3, y + 50, title);
-draw_text(x + view_wview * 0.7, y + 50, data);
+//draw_text(x + view_wview * 0.3, y + 50, title);
+//draw_text(x + view_wview * 0.7, y + 50, data);
 
-/*title */draw_text_transformed(/*x*/x + 1  ,/*y*/  y  +1, title, global.font_size,global.font_size,0);
-/*data */draw_text_transformed(/*x*/x + 50  ,/*y*/  y  +1, data, global.font_size,global.font_size,0);
+/*title */draw_text_transformed(/*x*/x ,/*y*/  y  , title, 1,1,0);
+/*data */draw_text_transformed(/*x*/x + (view_wview * 0.7),/*y*/  y  , data, 1,1,0);
 </string>
           </argument>
         </arguments>

@@ -104,6 +104,7 @@ with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display
 scr_item_update(); 
 //saves the store height into a variable
 scroll_height = -ds_grid_height(store)*32*obj_control.zoom + obj_control.display_center - 2*scroll_corner_height + 8*obj_control.zoom;
+
 </string>
           </argument>
         </arguments>
