@@ -29,6 +29,8 @@
 //~DC
 image_speed = 0;
 depth = obj_store_control.depth +1;
+button_text = "null";
+
 </string>
           </argument>
         </arguments>
@@ -106,40 +108,53 @@ y = ystart + obj_store_control.store_scroll;
 //if clicking in the UI section
 if mouse_y &gt; obj_control.display_center 
     {
-    //if there is sufficient insanity
-    if obj_store_control.item_price[parent] &lt;= obj_control.insanity
-        {
-        obj_control.insanity -= obj_store_control.item_price[parent]; //deduce insanity
-        obj_store_control.store[# 2, parent] += obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]; //increase level
-        
-        //track upgrades made in statistics
-        obj_control.stats_array[9,1] = real(obj_control.stats_array[9,1]) + real(obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]);
-        
-        
-        //checks if item is owned and change image_blend to c_white if it is
-        if obj_store_control.store[# 2,parent] = 0
+    if (obj_store_control.store[# 7, parent] = 0) //If item is NOT locked 
+        { 
+        //if there is sufficient insanity
+        if (obj_store_control.item_price[parent] &lt;= obj_control.insanity)
             {
-            item.image_blend = c_dkgray;
-            }
-        else
-            {
-            item.image_blend = c_white;
-            }
+            obj_control.insanity -= obj_store_control.item_price[parent]; //deduce insanity
+            obj_store_control.store[# 2, parent] += obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]; //increase level
             
-        scr_item_update();//update item price and dps
-        
-        //cityscape event
-        if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent] //if level reached the event level, create the specified object.
-            {
-            instance_create(0,0,obj_store_control.store[# 8, parent]);
-            }
-        
+            //track upgrades made in statistics
+            obj_control.stats_array[9,1] = real(obj_control.stats_array[9,1]) + real(obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]);
+            
+            
+            //checks if item is owned and change image_blend to c_white if it is
+            if obj_store_control.store[# 2,parent] = 0
+                {
+                item.image_blend = c_dkgray;
+                }
+            else
+                {
+                item.image_blend = c_white;
+                }
+                
+            scr_item_update();//update item price and dps
+            
+            //cityscape event
+            if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent] //if level reached the event level, create the specified object.
+                {
+                instance_create(0,0,obj_store_control.store[# 8, parent]);
+                }
+            
             //recalculate any active buff after new item is bought
             scr_buff_dps_recalc();
-        
+            
+            }
+            else //not enough instanity to purchase
+            {
+                /*insuficient funds tone*/
+            }
+        } 
+        else //item IS locked
+        {
+            button_text = "MAX LVL!";
+            /*item locked tone*/
         }
-    else {/*insuficient funds tone*/}
     }
+    
+scr_update_shop_buttons_TEMP(); //TEMP -HM
 </string>
           </argument>
         </arguments>
@@ -229,7 +244,7 @@ image_index = 1;
 //~DC
 draw_self();
 draw_set_color(obj_control.c_font);
-/*price */draw_text_transformed(/*x*/x + 4*obj_control.zoom  ,/*y*/ y + (image_index+4)*obj_control.zoom, string(obj_store_control.item_price[parent]), global.font_size,global.font_size,0);
+/*price */draw_text_transformed(/*x*/x + 4*obj_control.zoom  ,/*y*/ y + (image_index+4)*obj_control.zoom, button_text, global.font_size,global.font_size,0);
 </string>
           </argument>
         </arguments>

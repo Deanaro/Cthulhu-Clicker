@@ -40,6 +40,7 @@
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_ph_newgame</sprite>
       <sprite>sprites\spr_chest</sprite>
+      <sprite>sprites\spr_TROLOLOL</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
       <sprites name="Loading screen">
         <sprite>sprites\spr_loading</sprite>
@@ -96,7 +97,6 @@
       <sprite>sprites\spr_HUD_indicator</sprite>
       <sprite>sprites\spr_HUD_icons</sprite>
     </sprites>
-    <sprite>sprites\spr_TROLOLOL</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\bgr_placeholder</background>
@@ -109,6 +109,8 @@
       <script>scripts\scr_item_update.gml</script>
       <script>scripts\scr_calc_price.gml</script>
       <script>scripts\scr_calc_dps.gml</script>
+      <script>scripts\scr_update_button.gml</script>
+      <script>scripts\scr_update_shop_buttons_TEMP.gml</script>
     </scripts>
     <scripts name="View">
       <script>scripts\scr_viewupdate.gml</script>

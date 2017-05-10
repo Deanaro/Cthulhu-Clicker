@@ -99,6 +99,7 @@ with instance_create(2*view_wview - (33+20)*obj_control.zoom,obj_control.display
     image_xscale = obj_control.zoom;
     image_yscale = obj_control.zoom;
     parent = i;
+    item_number = i;
     }
 }
 //-----------------------------------------------------------------
