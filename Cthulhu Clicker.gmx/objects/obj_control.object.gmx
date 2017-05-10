@@ -27,8 +27,8 @@
             <kind>1</kind>
             <string>///INIT Game Parameters
 drag_distance = 300; //x distance before swipe is considered to be effective
-chest_spawn_min = 600; //10 sec
-chest_spawn_max = 660; //11 sec
+chest_spawn_min = 6000; //60 sec
+chest_spawn_max = 12000; //120 sec
 water_overlay = 0.4; //between 0 and 1, affect overlay tinge
 
 //Economy Parameters
@@ -162,8 +162,8 @@ all_dots_width = (view_count*dot_plus_offset_width-bOffset);
 dots_pos_start = (view_wview-all_dots_width)/2;
 
 // play bg music --------------- lachlan
-audio_play_sound(bgm_trololololol, 10, true);
-audio_sound_gain(bgm_trololololol,10, 0);
+audio_play_sound(snd_placeholder_music, 10, true);
+audio_sound_gain(snd_placeholder_music,10, 0);
 
 //DPS cycle
 alarm[0] = 1;

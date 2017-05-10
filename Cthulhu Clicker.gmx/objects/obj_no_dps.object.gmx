@@ -103,7 +103,7 @@ draw_set_alpha(0.7);
 draw_rectangle(view_xview + (view_wview/4), view_yview + (view_hview/3), view_xview + (view_wview - view_wview/4), view_yview + (view_hview - view_hview/3),false)
 draw_set_color(c_black);
 draw_set_alpha(1);
-draw_set_font(fnt_defualt);
+draw_set_font(fnt_default);
 draw_text(view_xview + (view_wview/4)+ obj_control.zoom*8, view_yview + (view_hview/1/3) + obj_control.zoom*8, "you have gained no insanity" + "
 due to" + string(reason));
 draw_self();

@@ -12,7 +12,7 @@ part_system_depth(part_sys_click, -11);
 //Create the clicker particle type
 part_click = part_type_create();
 // part_type_sprite(part_click, spr_ph_glob, 1, 0, 0);
-part_type_sprite(part_click, spr_TROLOLOL, 1, 0, 0);
+part_type_sprite(part_click, spr_ph_glob, 1, 0, 0);
 part_type_alpha2(part_click, 1, 0);
 part_type_life(part_click, 50, 100);
 part_type_speed(part_click, 0.5, 1.5, 0.05, 0);
