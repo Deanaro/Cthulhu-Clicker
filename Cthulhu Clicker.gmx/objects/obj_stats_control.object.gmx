@@ -58,6 +58,9 @@ scroll_section_frame[i] = irandom(5);
             <string>///create item list
 //~DC -lachlan edited for stats screen
 
+//seperation bettwen each stat
+seperation = 25;
+
 //scroll SETUP-------------------------------------------------
 image_xscale = view_wview/sprite_get_width(spr_control);
 image_yscale = (view_hview/2)/sprite_get_height(spr_control);
@@ -79,7 +82,7 @@ while( i &lt; array_height_2d(obj_control.stats_array))
 //-----------------------------------------------------------------
 
 //saves the store height into a variable
-scroll_height = -array_height_2d(obj_control.stats_array) * 100;
+scroll_height = -array_height_2d(obj_control.stats_array) * (seperation * 2);
 </string>
           </argument>
         </arguments>

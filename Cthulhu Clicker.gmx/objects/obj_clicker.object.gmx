@@ -72,6 +72,38 @@ scr_part_system_init(x+(sprite_width/2), y+(sprite_height/2)-25);
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///max clicks per second array int
+
+i=0
+while (i &lt;= room_speed - 1)
+    {
+    CPS [i]= 0;
+    i = i + 1;
+    }
+    
+//used to track position in array each step - lachlan
+array_position = 0;
+click = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="2" enumb="0">
       <action>
@@ -91,6 +123,49 @@ scr_part_system_init(x+(sprite_width/2), y+(sprite_height/2)-25);
           <argument>
             <kind>1</kind>
             <string>image_index = 0;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///adjust array for clicks per second
+
+//check click variable if 1 add 1 to array if not add 0
+if (click = 1)
+    {
+    CPS [array_position] = 1;
+    }
+if (click = 0)
+    {
+    CPS [array_position] = 0;
+    }
+
+//reset variables
+click = 0
+//change array position
+array_position = array_position + 1;
+//set back to zero if the array has looped through
+if (array_position = room_speed)
+    {
+    array_position = 0;
+    }
 </string>
           </argument>
         </arguments>
@@ -152,6 +227,8 @@ if tap = true
 audio_play_sound(snd_tap_off,1,0)*/
 tap = false
 }
+
+
 </string>
           </argument>
         </arguments>
@@ -194,6 +271,9 @@ vol = vol + 0.05;
 // add to total click count - lachlan
 current_total = real(obj_control.stats_array[3,1]);
 obj_control.stats_array[3,1] = current_total  + 1;
+
+//used to track clickes per second - lachlan
+click = 1
 </string>
           </argument>
         </arguments>

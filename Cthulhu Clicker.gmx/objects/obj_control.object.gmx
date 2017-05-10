@@ -680,6 +680,47 @@ else if ui_swipe_snap = 1   //when mouse is swipe ends, snaps to the closest vie
           </argument>
         </arguments>
       </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///calculate clicks per second
+local_cps = 0;
+
+i=0;
+while (i &lt;= room_speed - 1)
+    {
+    if (obj_clicker.CPS [i] = 1)
+        {
+        local_cps = local_cps + 1;
+        }
+    i = i + 1;
+    }
+
+
+    
+//compare result to stats array
+if (real(stats_array[4,1]) &lt; local_cps)
+    {
+    //if local is larger then stats array update array
+    stats_array[4,1] = local_cps;
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
     </event>
     <event eventtype="6" enumb="56">
       <action>
