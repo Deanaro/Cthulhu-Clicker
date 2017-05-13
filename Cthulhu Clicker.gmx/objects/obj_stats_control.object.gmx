@@ -82,7 +82,7 @@ while( i &lt; array_height_2d(obj_control.stats_array))
 //-----------------------------------------------------------------
 
 //saves the store height into a variable
-scroll_height = -array_height_2d(obj_control.stats_array) * (seperation * 2);
+scroll_height = -array_height_2d(obj_control.stats_array) * (seperation * 2) + (seperation * 2);
 </string>
           </argument>
         </arguments>

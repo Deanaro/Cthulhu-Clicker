@@ -190,6 +190,8 @@ scr_create_stats_array();
 date_set_timezone(timezone_utc);
 local_time = date_current_datetime();
 stats_array[7,1] = local_time;
+//used for calculating active play time
+obj_control.last_save_time = date_current_datetime();
 
 //create global variable for tracking hightest dps achived
 global.highest_dps = 0;

@@ -12,7 +12,7 @@ stats_array[2,1] = 0;
 //Total_clicks
 stats_array[3,0] = 'Total_clicks';
 stats_array[3,1] = 0;
-//Max_clicks_second - not tracked yet
+//Max_clicks_second 
 stats_array[4,0] = 'Max_clicks_second';
 stats_array[4,1] = 0;
 //Highest_dps
