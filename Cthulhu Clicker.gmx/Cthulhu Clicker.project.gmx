@@ -111,6 +111,10 @@
       <script>scripts\scr_calc_dps.gml</script>
       <script>scripts\scr_update_button.gml</script>
       <script>scripts\scr_update_shop_buttons_TEMP.gml</script>
+      <script>scripts\scr_update_all_item_icon.gml</script>
+      <script>scripts\scr_update_item_icon.gml</script>
+      <script>scripts\scr_check_purchased.gml</script>
+      <script>scripts\scr_check_unlocked.gml</script>
     </scripts>
     <scripts name="View">
       <script>scripts\scr_viewupdate.gml</script>

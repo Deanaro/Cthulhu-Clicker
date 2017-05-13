@@ -102,59 +102,62 @@ y = ystart + obj_store_control.store_scroll;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///purhcase
-//~DC
+            <string>///Purhcase Item
+//~DC &amp; HM &amp; L
 
 //if clicking in the UI section
 if mouse_y &gt; obj_control.display_center 
     {
-    if (obj_store_control.store[# 7, parent] = 0) //If item is NOT locked 
-        { 
-        //if there is sufficient insanity
-        if (obj_store_control.item_price[parent] &lt;= obj_control.insanity)
+    if (scr_check_unlocked() = 1) {
+        if (obj_store_control.store[# 7, parent] = 0) //If item is NOT locked 
             {
-            obj_control.insanity -= obj_store_control.item_price[parent]; //deduce insanity
-            obj_store_control.store[# 2, parent] += obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]; //increase level
-            
-            //track upgrades made in statistics
-            obj_control.stats_array[9,1] = real(obj_control.stats_array[9,1]) + real(obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]);
-            
-            
-            //checks if item is owned and change image_blend to c_white if it is
-            if obj_store_control.store[# 2,parent] = 0
+            //if there is sufficient insanity
+            if (obj_store_control.item_price[parent] &lt;= obj_control.insanity)
                 {
-                item.image_blend = c_dkgray;
-                }
-            else
-                {
-                item.image_blend = c_white;
-                }
+                obj_control.insanity -= obj_store_control.item_price[parent]; //deduce insanity
+                obj_store_control.store[# 2, parent] += obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]; //increase level
                 
-            scr_item_update();//update item price and dps
-            
-            //cityscape event
-            if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent] //if level reached the event level, create the specified object.
-                {
-                instance_create(0,0,obj_store_control.store[# 8, parent]);
+                //track upgrades made in statistics
+                obj_control.stats_array[9,1] = real(obj_control.stats_array[9,1]) + real(obj_purchasemultiplier.multiplier[obj_purchasemultiplier.M_index]);
+                
+                
+                //checks if item is owned and change image_blend to c_white if it is
+                if obj_store_control.store[# 2,parent] = 0
+                    {
+                    item.image_blend = c_dkgray;
+                    }
+                else
+                    {
+                    item.image_blend = c_white;
+                    }
+                    
+                scr_item_update();//update item price and dps
+                
+                //cityscape event
+                if obj_store_control.store[# 8, parent] = obj_store_control.store[# 2, parent] //if level reached the event level, create the specified object.
+                    {
+                    instance_create(0,0,obj_store_control.store[# 8, parent]);
+                    }
+                
+                //recalculate any active buff after new item is bought
+                scr_buff_dps_recalc();
+                
                 }
-            
-            //recalculate any active buff after new item is bought
-            scr_buff_dps_recalc();
-            
-            }
-            else //not enough instanity to purchase
+                else //not enough instanity to purchase
+                {
+                    /*insuficient funds tone*/
+                }
+            } 
+            else //item IS locked
             {
-                /*insuficient funds tone*/
+                button_text = "MAX LVL!";
+                /*item locked tone*/
             }
-        } 
-        else //item IS locked
-        {
-            button_text = "MAX LVL!";
-            /*item locked tone*/
         }
     }
     
 scr_update_shop_buttons_TEMP(); //TEMP -HM
+scr_update_all_item_icon(); //TEMP - HM
 </string>
           </argument>
         </arguments>

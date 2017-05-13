@@ -11,4 +11,5 @@ ds_grid_add(store, 5, temp, argument5);    //item type
 ds_grid_add(store, 6, temp, argument6);    //max level
 ds_grid_add(store, 7, temp, argument7);    //locked
 ds_grid_add(store, 8, temp, argument8);    //event
-ds_grid_add(store, 9, temp, argument9);  //object
+ds_grid_add(store, 9, temp, argument9);    //event object
+ds_grid_add(store, 10, temp, argument9);   //object unlock item num

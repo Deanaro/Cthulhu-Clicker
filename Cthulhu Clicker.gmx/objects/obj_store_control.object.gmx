@@ -68,16 +68,16 @@ dragoverwrite = 0;
 //--------------------------------------------------------------
 
 scr_item_list(); //initilise item list
-scr_load(); //check is save exists if so load it
+scr_load(); //check if save exists if so load it
 
-//create item instnaces ----------------------------------------
+//create item instances ----------------------------------------
 //create icon --------------------------------------------------
 for(var i=0; i &lt; ds_grid_height(store); i++)
 {
 item = instance_create(view_wview + scroll_corner_width -8*obj_control.zoom, obj_control.display_center + scroll_corner_height + (2+32*i)*obj_control.zoom,obj_item) 
     with item
     { 
-    sprite_index = obj_store_control.store[# 1,i];
+    //sprite_index = obj_store_control.store[# 1,i];
     parent = i;
     if obj_store_control.store[# 5,parent] = 0 {type_string = "DPS"}
     else {type_string = "Click Damage"}

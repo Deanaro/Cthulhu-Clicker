@@ -36,6 +36,12 @@ cost_increase_rate = 1.02; //multiplier affecting rate items increase in cost
 cost_dps_multi = 300; // Cost vs DPS relationship [Cost Divided by cost_dps_multi * (Item Multiplier ^ item_level) = DPS]
 
 //Visual Parameters
+
+    //Set store icon sprites
+store_item_locked = spr_icon_locked;
+store_item_placeholder = spr_placeholdericon;
+
+    //Set Font Parameters and Variables
 fnt_main = fnt_heroes; //set the game main font
 draw_set_font(fnt_heroes);
 c_font = make_color_rgb(48,34,60)

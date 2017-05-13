@@ -25,11 +25,46 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//INIT variables
+            <string>///INIT store item parameters
+//*variable parent = item_number in store DS list
+
+//INIT variables
 depth = obj_store_control.depth + 2;
 //make colors~~
 c_scroll_base = make_color_rgb(205,199,177);
 c_scroll_border = make_color_rgb(86,74,86);
+
+//set sprites
+item_icon_locked = obj_control.store_item_locked;
+item_icon_unlocked = 0;
+item_icon = item_icon_locked; //the current icon to draw
+
+//start alarm to allow for parameter updated -TO CHANGE -HM
+alarm[0] = 10;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Check and set icon sprite
+scr_update_item_icon();
 </string>
           </argument>
         </arguments>
@@ -89,10 +124,11 @@ draw_self();
 draw_set_color(obj_control.c_font);
 /*name  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (2)*obj_control.zoom, string(obj_store_control.store[# 0,parent]), global.font_size,global.font_size,0);
 /*level */draw_text_transformed(/*x*/x + 1  ,/*y*/  y  +1, string(obj_store_control.store[# 2,parent]), global.font_size,global.font_size,0);
-if obj_store_control.store[# 1, parent] != 0
-{
- /*DPS  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (10)*obj_control.zoom,string(type_string) +": " + string(obj_store_control.item_DPS[parent]), global.font_size,global.font_size,0);
-}
+
+//if obj_store_control.store[# 1, parent] != 0 - Not needed?? - HM
+//{
+/*DPS  */draw_text_transformed(/*x*/ x + 32 * obj_control.zoom  ,/*y*/  y + (10)*obj_control.zoom,string(type_string) +": " + string(obj_store_control.item_DPS[parent]), global.font_size,global.font_size,0);
+//}
 </string>
           </argument>
         </arguments>

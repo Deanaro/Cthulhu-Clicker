@@ -30,6 +30,6 @@ for(var item_num =0;item_num < ds_grid_height(obj_store_control.store);item_num+
             obj_store_control.store[# 7, item_num] = 1;
         }
         
-
+    scr_update_all_item_icon();
 }
 
