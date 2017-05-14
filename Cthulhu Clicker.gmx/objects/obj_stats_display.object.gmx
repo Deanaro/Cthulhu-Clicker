@@ -81,7 +81,7 @@ c_scroll_border = make_color_rgb(86,74,86);
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///update fron array
+            <string>///update from array
 title = obj_control.stats_array[array_row,0];
 data = obj_control.stats_array[array_row,1];
 
@@ -122,19 +122,7 @@ else
     data = floor(data);
     }
 
-//remove under scores from titles
-underscores = 1
-while (underscores = 1)
-{
-    if string_pos('_', title) != 0
-    {
-    title = string_replace(title, '_', ' ');
-    }
-    else
-    {
-    underscores = 0;
-    }
-}
+title = func_remove_underscores(title);
 
 
 </string>

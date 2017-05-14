@@ -134,7 +134,44 @@ while (position <= max_position)
     //reset t
     t = 0;
     }
-   
+
+    
+    
+//load Boss array - lachlan
+r = 0;
+t = 0;
+position = 0;
+max_position = ini_read_real('boss_array', 'positon_max', 'error');
+//every second entry is a string this is used to keep track of if data will be string or not
+
+//loop array
+while (position <= max_position)
+    {
+    while (t <= array_length_2d(obj_control.boss_array, r) - 1)
+        {
+        //first column in the boss table is a string
+        if (t = 0)
+            {
+            obj_control.boss_array[r,t] = ini_read_string('boss_array', 'positon' + string(position), 'error');
+            
+            }
+        else
+            {
+            obj_control.boss_array[r,t] = ini_read_real('boss_array', 'positon' + string(position), 'error');
+            obj_control.boss_array[r,t] = real(obj_control.boss_array[r,t]);
+            
+            }
+            //add 1 to position
+            position = position + 1;
+            //increase t
+            t = t + 1;
+            
+        }
+    //increase r
+    r = r + 1;
+    //reset t
+    t = 0;
+    }
    
    
    //close save file

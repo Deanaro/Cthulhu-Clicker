@@ -202,6 +202,8 @@ obj_control.last_save_time = date_current_datetime();
 //create global variable for tracking hightest dps achived
 global.highest_dps = 0;
 
+//build boss table
+scr_boss_table();
 </string>
           </argument>
         </arguments>

@@ -140,9 +140,13 @@
     <scripts name="Basic Functions">
       <script>scripts\func_decimal.gml</script>
       <script>scripts\func_TEST.gml</script>
+      <script>scripts\func_remove_underscores.gml</script>
     </scripts>
     <scripts name="buffs/pickups">
       <script>scripts\scr_buff_dps_recalc.gml</script>
+    </scripts>
+    <scripts name="boss events">
+      <script>scripts\scr_boss_table.gml</script>
     </scripts>
   </scripts>
   <fonts name="fonts">
@@ -160,6 +164,7 @@
       <object>objects\obj_stats_control</object>
       <object>objects\obj_menu_control</object>
       <object>objects\obj_loading_control</object>
+      <object>objects\obj_boss_event</object>
     </objects>
     <objects name="Store Objects">
       <object>objects\obj_item</object>
