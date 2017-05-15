@@ -85,7 +85,7 @@ zoom_icon = round(view_wview/(sprite_get_width(spr_loading_icon) * 7));
 global.server_connection = 0;
 
 //set default time out time
-network_set_config(network_config_connect_timeout,6000);
+network_set_config(network_config_connect_timeout,3000);
 
 //set game maker to not block
 network_set_config(network_config_use_non_blocking_socket, 1);
