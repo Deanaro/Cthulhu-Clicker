@@ -13,11 +13,12 @@ if (file_exists("save.ini"))
 ini_open(working_directory + "save.ini");
 
 //save non arrayed values
-ini_write_real('Variables', 'Click damage' , click_damage);
-ini_write_real('Variables', 'DPS' , DPS);
-ini_write_real('Variables', 'Population' , population);
-ini_write_real('Variables', 'Afflicted' , afflicted);
-ini_write_real('Variables', 'Insanity' , insanity);
+ini_write_real('Variables', 'Click damage' , obj_control.click_damage);
+ini_write_real('Variables', 'DPS' , obj_control.DPS);
+ini_write_real('Variables', 'Population' , obj_control.population);
+ini_write_real('Variables', 'Afflicted' , obj_control.afflicted);
+ini_write_real('Variables', 'Insanity' , obj_control.insanity);
+ini_write_real('Variables', 'Counter dps' , obj_control.counter_dps);
 
 //save store ds grid array
 //save the store array size

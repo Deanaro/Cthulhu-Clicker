@@ -39,8 +39,10 @@
     <sprites name="Placeholders">
       <sprite>sprites\spr_control</sprite>
       <sprite>sprites\spr_ph_newgame</sprite>
+      <sprite>sprites\spr_placeholder_boss</sprite>
       <sprite>sprites\spr_chest</sprite>
       <sprite>sprites\spr_TROLOLOL</sprite>
+      <sprite>sprites\spr_back</sprite>
       <sprite>sprites\spr_ph_glob</sprite>
       <sprites name="Loading screen">
         <sprite>sprites\spr_loading</sprite>
@@ -48,6 +50,7 @@
         <sprite>sprites\spr_loading_background</sprite>
       </sprites>
       <sprite>sprites\spr_water</sprite>
+      <sprite>sprites\spr_boss_icon</sprite>
     </sprites>
     <sprites name="UI">
       <sprite>sprites\spr_exit</sprite>
@@ -179,6 +182,9 @@
       <object>objects\obj_popup_text</object>
       <object>objects\obj_no_dps</object>
       <object>objects\obj_chest</object>
+      <object>objects\obj_boss_icon</object>
+      <object>objects\obj_back</object>
+      <object>objects\obj_boss</object>
     </objects>
     <objects name="loading screen">
       <object>objects\obj_loading_bar</object>

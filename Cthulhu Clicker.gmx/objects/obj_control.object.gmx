@@ -128,6 +128,8 @@ population = 7000000000;
 afflicted = 0;
 insanity = 0;
 global.DPS = 0;
+counter_dps = 0;
+active_boss = 0;
 
 //View Variables
 viewnum = 0;
@@ -307,6 +309,110 @@ instance_create(0,0,obj_HUD);
           <argument>
             <kind>4</kind>
             <string>3</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>60</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>7</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="7">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///loop through boss array to check if one should activate
+//lachlan
+if (obj_control.active_boss = 0)
+    {
+    i = 0;
+    //loop array
+    while (i &lt;= array_height_2d(obj_control.boss_array) - 1)
+        {
+        //check if boss is defeated
+        if (real(obj_control.boss_array[i,6]) = 0)
+            {
+            //if not defeated compare pop
+            if (real(obj_control.boss_array[i,5]) &gt;= obj_control.population)
+                {
+                    //create boss event obj with the nessisary data
+                    with instance_create(0,0,obj_boss_event)
+                     {
+                        x = view_wview * 6;
+                        y = 0;
+                        boss_array_position = other.i;
+                     }
+                    
+                    
+                    //activate boss
+                    obj_control.active_boss = 1;
+                    
+                    //stop looping
+                    i =10000
+                }
+            }
+         //move to the next array line
+         i = i+1
+         }
+    }
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>301</id>
+        <kind>0</kind>
+        <userelative>-1</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>1</exetype>
+        <functionname>action_set_alarm</functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>0</kind>
+            <string>60</string>
+          </argument>
+          <argument>
+            <kind>4</kind>
+            <string>7</string>
           </argument>
         </arguments>
       </action>

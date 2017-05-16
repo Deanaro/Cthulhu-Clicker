@@ -16,9 +16,7 @@ if (file_exists(working_directory + "save.ini"))
    var population = ini_read_real('Variables', 'Population' , 0);
    var afflicted = ini_read_real('Variables', 'Afflicted' , 0);
    var insanity = ini_read_real('Variables', 'Insanity' , 0);
-   
-
-   
+   var counter_dps = ini_read_real('Variables', 'Counter dps' , 0);
   
    
    //fill array
@@ -45,7 +43,7 @@ if (file_exists(working_directory + "save.ini"))
          var diff =  global.server_datetime - save_datetime;
   
          //calculate damage done and round to nearest interger
-         damage = round(diff * DPS);
+         damage = round(diff * (DPS - counter_dps));
          with instance_create(0,0,obj_popup)
          {
          afkinsanity = other.damage;
@@ -149,8 +147,8 @@ while (position <= max_position)
     {
     while (t <= array_length_2d(obj_control.boss_array, r) - 1)
         {
-        //first column in the boss table is a string
-        if (t = 0)
+        //1 and 7 columns in the boss table is a string
+        if (t = 0 or t = 7)
             {
             obj_control.boss_array[r,t] = ini_read_string('boss_array', 'positon' + string(position), 'error');
             
