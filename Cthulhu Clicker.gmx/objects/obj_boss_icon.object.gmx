@@ -29,6 +29,8 @@
 //lachlan
 x = view_wview * 0.8
 y = view_hview * 0.8
+
+depth = 0;
 </string>
           </argument>
         </arguments>

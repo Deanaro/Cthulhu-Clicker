@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>10</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -40,6 +40,8 @@ sprite_index = sprite;
 //move to position
 x = obj_boss_event.x + (view_wview * 6.5);
 y = obj_boss_event.y + (view_hview * 0.5);
+
+depth = 0;
 
 </string>
           </argument>

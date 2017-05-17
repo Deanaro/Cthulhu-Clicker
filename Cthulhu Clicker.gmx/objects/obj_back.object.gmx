@@ -28,6 +28,8 @@
             <string>//move to position
 x = obj_boss_event.x + (view_wview * 0.1);
 y = view_hview * 0.1;
+
+depth = 0;
 </string>
           </argument>
         </arguments>
