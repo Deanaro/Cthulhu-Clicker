@@ -87,6 +87,9 @@
       <sprite>sprites\spr_clicker2</sprite>
     </sprites>
     <sprites name="CityScape">
+      <sprite>sprites\spr_building_front_3</sprite>
+      <sprite>sprites\spr_building_front_2</sprite>
+      <sprite>sprites\spr_building_front_1</sprite>
       <sprite>sprites\spr_cityscape</sprite>
       <sprite>sprites\spr_sky</sprite>
       <sprite>sprites\spr_sky2</sprite>

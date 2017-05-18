@@ -30,7 +30,7 @@ drag_distance = 300; //x distance before swipe is considered to be effective
 chest_spawn_min = 6000; //60 sec
 chest_spawn_max = 12000; //120 sec
 water_overlay = 0.4; //between 0 and 1, affect overlay tinge
-
+global.view_lock = true;
 //Economy Parameters
 cost_increase_rate = 1.02; //multiplier affecting rate items increase in cost
 cost_dps_multi = 300; // Cost vs DPS relationship [Cost Divided by cost_dps_multi * (Item Multiplier ^ item_level) = DPS]
@@ -759,7 +759,8 @@ if os_is_paused()
     scr_save();
     }
 
-    
+if global.view_lock
+{    
 //view swipe functionality
 if ui_swipe_start = 1   //if the view is being swiped, offset view to match the mouse offset
     {
@@ -792,6 +793,7 @@ else if ui_swipe_snap = 1   //when mouse is swipe ends, snaps to the closest vie
             }
         x = view_xview;
     }
+}
 </string>
           </argument>
         </arguments>

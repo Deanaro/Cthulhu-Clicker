@@ -54,6 +54,7 @@ depth = 0;
           <argument>
             <kind>1</kind>
             <string>///move to boss screen located at view_wview * 6
+global.view_lock = false;
 view_xview = obj_boss_event.x
 </string>
           </argument>
