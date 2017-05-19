@@ -31,6 +31,9 @@ x = view_wview * 0.8
 y = view_hview * 0.8
 
 depth = 0;
+
+//set boss view as focused
+obj_boss_event.boss_focus = 1;
 </string>
           </argument>
         </arguments>
@@ -56,6 +59,8 @@ depth = 0;
             <string>///move to boss screen located at view_wview * 6
 global.view_lock = false;
 view_xview = obj_boss_event.x
+//set boss as focused
+boss_focus = 1;
 </string>
           </argument>
         </arguments>

@@ -31,6 +31,11 @@ object is created in obj_control under alarm 7
 boss_array_position is passed when the object is created and equels the row the of the boss array that this bosses information is stored in.
 */
 boss_array_position = 0;
+
+x = view_wview * 6;
+y = 0;
+
+boss_focus = 0;
 </string>
           </argument>
         </arguments>
@@ -57,6 +62,15 @@ boss_name = obj_control.boss_array[boss_array_position,0];
 boss_health = obj_control.boss_array[boss_array_position,1];
 boss_time = obj_control.boss_array[boss_array_position,2];
 boss_sprite = obj_control.boss_array[boss_array_position,7];
+
+
+/* variables to track with */
+
+//convert time to steps for time tracking
+time_steps = boss_time * room_speed;
+
+//set boss health
+boss_current_health = boss_health;
 </string>
           </argument>
         </arguments>
@@ -79,6 +93,8 @@ boss_sprite = obj_control.boss_array[boss_array_position,7];
             <kind>1</kind>
             <string>///spawn boss objects
 //lachlan
+
+test = view_wview * 6;
 
 //boss icon 
 instance_create (0,0,obj_boss_icon);
@@ -130,6 +146,74 @@ obj_control.active_boss = 0;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///calculate steps left in time
+time_steps = time_steps - 1;
+
+if (time_steps &lt;= 0)
+{
+    //time is up
+    //send user back to main screen
+    view_xview = 0
+    obj_control.x = 0
+    global.view_lock = true;
+
+    //set boss as unfocused
+    obj_boss_event.boss_focus = 0
+    
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///check if boss view is focused
+
+//if unfocused reset variables
+if (boss_focus = 0)
+{
+    //reset time 
+    time_steps = boss_time * room_speed;
+    
+    //reset health
+    boss_current_health = boss_health;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -147,8 +231,11 @@ obj_control.active_boss = 0;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///draw background sprite
-draw_sprite_pos(spr_boss_background, 0, obj_boss_event.x, obj_boss_event.y, obj_boss_event.x+view_wview, 0, obj_boss_event.x+view_wview, view_hview, obj_boss_event.x, view_hview, 1);
+            <string>///draw variables and background
+draw_sprite_pos(spr_boss_background, 0, obj_boss_event.x, 0, obj_boss_event.x + view_wview, 0, obj_boss_event.x + view_wview, view_hview, obj_boss_event.x, view_hview, 1);
+draw_text((obj_boss_event.x+(view_wview * 0.25)),(obj_boss_event.y + (view_hview * 0.25)),string(boss_current_health));
+draw_text((obj_boss_event.x+(view_wview * 0.75)),(obj_boss_event.y + (view_hview * 0.25)),string(time_steps / room_speed));
+
 </string>
           </argument>
         </arguments>

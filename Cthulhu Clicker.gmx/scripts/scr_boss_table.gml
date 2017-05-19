@@ -15,7 +15,7 @@
 //boss 1
 boss_array[0,0] = "boss_1";
 boss_array[0,1] = 100;
-boss_array[0,2] = 60;
+boss_array[0,2] = 30;
 boss_array[0,3] = 50;
 boss_array[0,4] = 1;
 boss_array[0,5] = 7000000000 - 100;
@@ -25,7 +25,7 @@ boss_array[0,7] = "spr_placeholder_boss";
 //boss 2
 boss_array[1,0] = 'boss_2';
 boss_array[1,1] = 250;
-boss_array[1,2] = 60;
+boss_array[1,2] = 25;
 boss_array[1,3] = 75;
 boss_array[1,4] = 2;
 boss_array[1,5] = 7000000000 - 400;

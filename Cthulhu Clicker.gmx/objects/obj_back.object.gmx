@@ -25,11 +25,14 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>//move to position
-x = obj_boss_event.x + (view_wview * 0.1);
-y = view_hview * 0.1;
+            <string>///move to position
 
 depth = 0;
+
+x = obj_boss_event.x;
+y = obj_boss_event.y + view_hview * 0.1;
+
+
 </string>
           </argument>
         </arguments>
@@ -53,8 +56,13 @@ depth = 0;
           <argument>
             <kind>1</kind>
             <string>///back to main view
-global.view_lock = true;
+view_xview = 0
 obj_control.x = 0
+global.view_lock = true;
+
+//set boss as unfocused
+obj_boss_event.boss_focus = 0
+
 </string>
           </argument>
         </arguments>

@@ -38,7 +38,7 @@ sprite_set_offset(sprite, sprite_get_width(sprite) /2, sprite_get_height(sprite)
 sprite_index = sprite;
 
 //move to position
-x = obj_boss_event.x + (view_wview * 6.5);
+x = obj_boss_event.x + (view_wview * 0.5);
 y = obj_boss_event.y + (view_hview * 0.5);
 
 depth = 0;
