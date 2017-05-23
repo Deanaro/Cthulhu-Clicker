@@ -138,7 +138,26 @@ with (obj_boss_icon)
    {
     instance_destroy();
    }
+   
+   //destroy boss icon
+with (obj_boss)
+   {
+    instance_destroy();
+   }
+   
+   //destroy boss icon
+with (obj_back)
+   {
+    instance_destroy();
+   }
 
+   //time is up
+    //send user back to main screen
+    view_xview = 0
+    obj_control.x = 0
+    global.view_lock = true;
+
+   
 //turn off active boss
 obj_control.active_boss = 0;
 </string>
@@ -208,6 +227,32 @@ if (boss_focus = 0)
     
     //reset health
     boss_current_health = boss_health;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///check if boss is killed
+
+if (boss_current_health &lt;=0)
+{
+    instance_destroy();
 }
 </string>
           </argument>

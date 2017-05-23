@@ -67,7 +67,7 @@ depth = 0;
             <kind>1</kind>
             <string>///remove health
 //lachlan
-obj_boss_event.boss_health = obj_boss_event.boss_health - obj_control.click_damage;
+obj_boss_event.boss_current_health = obj_boss_event.boss_current_health - obj_control.click_damage;
 </string>
           </argument>
         </arguments>
