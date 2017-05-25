@@ -43,6 +43,8 @@ y = obj_boss_event.y + (view_hview * 0.5);
 
 depth = 0;
 
+image_xscale = obj_control.zoom;
+image_yscale = obj_control.zoom;
 </string>
           </argument>
         </arguments>

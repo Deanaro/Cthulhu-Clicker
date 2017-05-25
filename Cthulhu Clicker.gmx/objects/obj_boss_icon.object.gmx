@@ -32,8 +32,10 @@ y = view_hview * 0.8
 
 depth = 0;
 
-//set boss view as focused
-obj_boss_event.boss_focus = 1;
+
+
+image_xscale = obj_control.zoom;
+image_yscale = obj_control.zoom;
 </string>
           </argument>
         </arguments>

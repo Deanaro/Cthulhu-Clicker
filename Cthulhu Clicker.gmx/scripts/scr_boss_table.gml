@@ -30,4 +30,4 @@ boss_array[1,3] = 75;
 boss_array[1,4] = 2;
 boss_array[1,5] = 7000000000 - 400;
 boss_array[1,6] = 0;
-boss_array[1,7] = "spr_placeholder_boss";
+boss_array[1,7] = "spr_placeholder_boss2";
